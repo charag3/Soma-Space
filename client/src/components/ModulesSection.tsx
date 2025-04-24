@@ -1,31 +1,50 @@
+
 import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Box, Calendar, Zap, BarChart } from "lucide-react";
+import { ScrollText, Package2, Calendar, BarChart3, Repeat, MessageSquare, Puzzle } from "lucide-react";
 
 const modules = [
   {
-    icon: <Box className="h-10 w-10" />,
-    title: "Inventario inteligente",
+    icon: <ScrollText className="h-10 w-10" />,
+    title: "Gestión administrativa digital",
     description:
-      "Gestión automatizada de existencias con predicciones basadas en IA para optimizar costos y evitar quiebres de stock.",
+      "Lleva control de citas, ingresos, gastos y actividades diarias sin depender de papeles o apps dispersas.",
+  },
+  {
+    icon: <Package2 className="h-10 w-10" />,
+    title: "Control de inventario en tiempo real",
+    description:
+      "Evita quiebres de stock y compras innecesarias. Visualiza lo que tienes y lo que necesitas.",
   },
   {
     icon: <Calendar className="h-10 w-10" />,
-    title: "Agenda operativa",
+    title: "Agenda inteligente",
     description:
-      "Calendario inteligente que coordina recursos, personal y tareas para maximizar la eficiencia operativa.",
+      "Organiza tareas, turnos o servicios desde un solo lugar. Asigna, reprograma y da seguimiento fácilmente.",
   },
   {
-    icon: <Zap className="h-10 w-10" />,
-    title: "Automatización de procesos",
+    icon: <BarChart3 className="h-10 w-10" />,
+    title: "Reportes y dashboards personalizados",
     description:
-      "Elimina tareas repetitivas y reduce errores humanos con flujos de trabajo inteligentes personalizados.",
+      "Revisa tus ingresos, rendimiento del equipo o citas agendadas con visualizaciones claras y actualizadas.",
   },
   {
-    icon: <BarChart className="h-10 w-10" />,
-    title: "Dashboards con IA",
+    icon: <Repeat className="h-10 w-10" />,
+    title: "Automatización de tareas repetitivas",
     description:
-      "Visualizaciones dinámicas que muestran KPIs relevantes y generan insights accionables mediante análisis inteligente.",
+      "Ahorra tiempo al automatizar respuestas, recordatorios o procesos internos.",
+  },
+  {
+    icon: <MessageSquare className="h-10 w-10" />,
+    title: "Integración con WhatsApp, Telegram y correo",
+    description:
+      "Recibe notificaciones, recordatorios o alertas donde más te convenga.",
+  },
+  {
+    icon: <Puzzle className="h-10 w-10" />,
+    title: "Sistemas a la medida de tu negocio",
+    description:
+      "Cada herramienta se adapta a lo que tú necesitas, no al revés.",
   },
 ];
 
@@ -49,7 +68,7 @@ const ModulesSection = () => {
           </h2>
 
           <div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8" 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
             data-scroll="true"
             ref={sectionRef}
           >
