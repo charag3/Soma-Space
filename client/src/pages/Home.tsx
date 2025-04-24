@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Activity, Code, Layout, PenTool, Lightbulb, BarChart3, Palette, Image, Film } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScheduleSection from "@/components/ScheduleSection";
 
 const MainHome = () => {
   return (
@@ -63,7 +64,7 @@ const MainHome = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="flex items-start">
                       <Code className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">Automatización</span>
+                      <span className="text-sm whitespace-nowrap">Automatización</span>
                     </div>
                     <div className="flex items-start">
                       <BarChart3 className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
@@ -79,15 +80,17 @@ const MainHome = () => {
                     </div>
                   </div>
                   
-                  <Link 
-                    to="/flow"
-                    className="w-full md:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
-                    shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
-                    focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
-                    inline-block text-center"
-                  >
-                    Automatiza tu negocio
-                  </Link>
+                  <div className="flex justify-center">
+                    <Link 
+                      to="/flow"
+                      className="w-48 font-medium py-3 px-8 rounded-lg btn-gradient
+                      shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
+                      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
+                      text-center"
+                    >
+                      Automatiza tu negocio
+                    </Link>
+                  </div>
                 </div>
               </div>
               
@@ -129,20 +132,25 @@ const MainHome = () => {
                     </div>
                   </div>
                   
-                  <Link 
-                    to="/studio"
-                    className="w-full md:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
-                    shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
-                    focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
-                    inline-block text-center"
-                  >
-                    Impulsa tu marca
-                  </Link>
+                  <div className="flex justify-center">
+                    <Link 
+                      to="/studio"
+                      className="w-48 font-medium py-3 px-8 rounded-lg btn-gradient
+                      shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
+                      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
+                      text-center"
+                    >
+                      Impulsa tu marca
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        
+        {/* Sección de Agenda */}
+        <ScheduleSection />
       </main>
       <Footer />
     </div>

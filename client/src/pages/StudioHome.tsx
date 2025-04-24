@@ -4,6 +4,7 @@ import { PenTool, Layout, Palette, Film, Image, Lightbulb, CheckCircle } from "l
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScheduleSection from "@/components/ScheduleSection";
+import StudioParticlesBackground from "@/components/StudioParticlesBackground";
 
 const StudioHome = () => {
   const heroRef = useRef<HTMLDivElement>(null);
