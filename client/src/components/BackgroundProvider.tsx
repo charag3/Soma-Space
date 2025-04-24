@@ -19,13 +19,13 @@ interface BackgroundProviderProps {
 export function BackgroundProvider({ children }: BackgroundProviderProps) {
   return (
     <BackgroundContext.Provider value={{ showParticles: true }}>
-      {/* Fondo de partículas fijo en toda la aplicación */}
-      <div className="fixed inset-0 z-0">
+      {/* Fondo de partículas fijo en toda la aplicación con z-index negativo para estar detrás de todo */}
+      <div className="fixed inset-0 z-[-1]">
         <ParticlesBackground />
       </div>
       
       {/* Superposición sutil que no interfiere con la interacción de partículas */}
-      <div className="fixed inset-0 z-[1] bg-gradient-to-b from-dark-900/10 via-dark-900/20 to-dark-900/40 pointer-events-none"></div>
+      <div className="fixed inset-0 z-[-1] bg-gradient-to-b from-dark-900/10 via-dark-900/20 to-dark-900/40 pointer-events-none"></div>
       
       {children}
     </BackgroundContext.Provider>

@@ -9,9 +9,9 @@ const HeroSection = () => {
   return (
     <section className="flex items-center justify-center relative overflow-hidden min-h-screen">
       {/* Main content */}
-      <div className="container mx-auto px-6 relative z-10 pointer-events-none">
+      <div className="container mx-auto px-6 relative">
         <div
-          className="max-w-4xl mx-auto text-center pointer-events-auto"
+          className="max-w-4xl mx-auto text-center"
           data-scroll="true"
           ref={elementRef}
         >
@@ -26,7 +26,7 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <a
-              href="#contact"
+              href="#schedule"
               className="w-full sm:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
               shadow-[0_0_10px_rgba(29,204,133,0.2)]
               focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900"
