@@ -38,10 +38,8 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <a
               href="#contact"
-              className="w-full sm:w-auto font-medium py-3 px-8 rounded-lg transition-all 
-              bg-gradient-to-br from-[#54d0ec] via-[#2EE9DC] to-[#0d9c9e] text-dark-900
-              shadow-[0_0_10px_rgba(46,233,220,0.3)] 
-              hover:shadow-[0_0_15px_rgba(46,233,220,0.5)] 
+              className="w-full sm:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
+              shadow-[0_0_10px_rgba(46,233,220,0.2)]
               focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900"
             >
               Agendar una llamada

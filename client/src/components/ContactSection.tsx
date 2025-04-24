@@ -126,7 +126,7 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-primary hover:bg-primary/90 text-dark-900 font-medium py-3 px-8 rounded-lg transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-800 disabled:opacity-70"
+                  className="btn-gradient font-medium py-3 px-8 rounded-lg shadow-[0_0_10px_rgba(46,233,220,0.2)] hover:shadow-[0_0_15px_rgba(46,233,220,0.4)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-800 disabled:opacity-70"
                 >
                   {isSubmitting ? "Enviando..." : "Enviar"}
                 </button>
