@@ -13,12 +13,27 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <ParticlesBackground />
       </div>
-      
+
+      {/* Geometric pattern */}
+      <div className="absolute inset-0 z-10 opacity-20">
+        <svg viewBox="0 0 1600 900" className="w-full h-full">
+          <rect width="1600" height="900" fill="#0F1116" />
+          <g fill="none" stroke="#2EE9DC" strokeWidth="1">
+            <polygon points="1600,900 0,900 0,0 1600,0" />
+            <polygon points="1600,900 0,900 800,0" />
+            <polygon points="1600,0 0,0 800,900" />
+            <line x1="0" y1="0" x2="1600" y2="900" />
+            <line x1="1600" y1="0" x2="0" y2="900" />
+            <circle cx="800" cy="450" r="300" />
+          </g>
+        </svg>
+      </div>
+
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-900/95 to-dark-900 z-1"></div>
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-dark-900/90 via-dark-900/80 to-dark-900"></div>
 
       {/* Main content */}
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-30"> {/* Increased z-index for main content */}
         <div
           className="max-w-4xl mx-auto text-center"
           data-scroll="true"
