@@ -9,11 +9,9 @@ const HeroSection = () => {
   return (
     <section className="flex items-center justify-center relative overflow-hidden min-h-screen">
       {/* Main content */}
-      <div className="container mx-auto px-6 relative z-10">
-        {" "}
-        {/* Adjusted z-index to still appear above particles */}
+      <div className="container mx-auto px-6 relative z-10 pointer-events-none">
         <div
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center pointer-events-auto"
           data-scroll="true"
           ref={elementRef}
         >

@@ -1,7 +1,7 @@
 import { createContext, useContext, ReactNode } from 'react';
 import ParticlesBackground from './ParticlesBackground';
 
-// Context para gestionar el fondo con partículas
+// Contexto para gestionar el fondo con partículas
 interface BackgroundContextProps {
   showParticles: boolean;
 }
@@ -16,11 +16,11 @@ interface BackgroundProviderProps {
 }
 
 // Provider component
-export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
+export function BackgroundProvider({ children }: BackgroundProviderProps) {
   return (
     <BackgroundContext.Provider value={{ showParticles: true }}>
       {/* Fondo de partículas fijo en toda la aplicación */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-auto">
         <ParticlesBackground />
       </div>
       
@@ -30,9 +30,9 @@ export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
       {children}
     </BackgroundContext.Provider>
   );
-};
+}
 
 // Hook para usar el contexto
-export const useBackground = () => useContext(BackgroundContext);
-
-export default BackgroundProvider;
+export function useBackground() {
+  return useContext(BackgroundContext);
+}

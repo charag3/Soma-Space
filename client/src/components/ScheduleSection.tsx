@@ -1,12 +1,18 @@
 import { useRef, useState, FormEvent, ChangeEvent } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Calendar, Clock, Mail, MessageSquare, User } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, Mail, MessageSquare, User } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 // Define tipos para el formulario
 interface ScheduleFormData {
   fullName: string;
   email: string;
-  date: string;
+  date: Date | undefined;
   time: string;
   message: string;
 }
