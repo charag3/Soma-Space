@@ -20,7 +20,7 @@ const ParticlesBackground = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        zIndex: 5
+        zIndex: 0
       }}
       options={{
         fullScreen: {
@@ -75,7 +75,7 @@ const ParticlesBackground = () => {
           },
           move: {
             enable: true,
-            speed: 2,
+            speed: 1,
             direction: "none",
             random: false,
             straight: false,

@@ -8,17 +8,17 @@ const HeroSection = () => {
   useScrollAnimation(elementRef);
 
   return (
-    <section className="pt-32 pb-24 md:pt-40 md:pb-32 relative overflow-hidden min-h-screen">
-      {/* Particles background - positioned directly inside section with higher z-index */}
-      <div className="absolute inset-0 z-10" style={{ height: "100%" }}>
+    <section className="pt-32 pb-12 md:pt-40 md:pb-16 relative overflow-hidden min-h-[80vh]">
+      {/* Particles background */}
+      <div className="absolute inset-0 z-0" style={{ height: "100%" }}>
         <ParticlesBackground />
       </div>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-b from-dark-900/70 via-dark-900/60 to-dark-900"></div>
+      {/* Subtle gradient overlay that won't interfere with particle interaction */}
+      <div className="absolute inset-0 z-5 bg-gradient-to-b from-dark-900/40 via-dark-900/30 to-dark-900/80 pointer-events-none"></div>
 
       {/* Main content */}
-      <div className="container mx-auto px-6 relative z-30"> {/* Higher z-index to appear above particles */}
+      <div className="container mx-auto px-6 relative z-10"> {/* Adjusted z-index to still appear above particles */}
         <div
           className="max-w-4xl mx-auto text-center"
           data-scroll="true"
