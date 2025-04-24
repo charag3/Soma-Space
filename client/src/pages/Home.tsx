@@ -28,7 +28,7 @@ const MainHome = () => {
             <h2 className="font-space font-bold text-3xl md:text-4xl mb-16 text-center">
               Nuestras <span className="text-primary">soluciones</span>
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {/* Bloque SomaFlow */}
               <div className="bg-dark-900 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 gradient-bg relative overflow-hidden group">
@@ -50,7 +50,7 @@ const MainHome = () => {
                     <circle cx="110" cy="160" r="5" fill="#2EE9DC" />
                   </svg>
                 </div>
-                
+
                 <div className="relative z-10">
                   <h3 className="font-space font-bold text-2xl md:text-3xl mb-6 flex items-center">
                     <Activity className="h-8 w-8 mr-3 text-primary" />
@@ -60,7 +60,7 @@ const MainHome = () => {
                     Automatización inteligente diseñada para adaptarse a cómo operas tu empresa. 
                     Optimiza procesos, elimina tareas repetitivas y haz crecer tu negocio.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="flex items-start">
                       <Code className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
@@ -79,21 +79,21 @@ const MainHome = () => {
                       <span className="text-sm">Bots</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex justify-center">
                     <Link 
                       to="/flow"
-                      className="w-48 font-medium py-3 px-8 rounded-lg btn-gradient
+                      className="w-52 font-medium py-2 px-6 rounded-lg btn-gradient whitespace-nowrap
                       shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
                       focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
-                      text-center"
+                      text-center text-sm"
                     >
                       Automatiza tu negocio
                     </Link>
                   </div>
                 </div>
               </div>
-              
+
               {/* Bloque SomaStudio */}
               <div className="bg-dark-900 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 gradient-bg relative overflow-hidden group">
                 {/* Decoración orgánica/burbujas */}
@@ -102,7 +102,7 @@ const MainHome = () => {
                     <path d="M45.7,-69.2C58.9,-62.8,69.3,-49.4,76.3,-34.1C83.3,-18.8,87,-1.7,83.1,13.5C79.2,28.6,67.7,41.8,54.5,51.6C41.3,61.5,26.4,68.1,10.8,71.2C-4.9,74.4,-21.2,74.1,-35.5,68.2C-49.8,62.2,-62,50.5,-70,36.1C-78,21.7,-81.9,4.5,-78.1,-11C-74.3,-26.4,-63,-40.2,-49.5,-48.1C-36,-56,-18,-58.1,-0.9,-56.9C16.3,-55.7,32.6,-51.1,45.7,-69.2Z" transform="translate(100 100)" fill="#2EE9DC" />
                   </svg>
                 </div>
-                
+
                 <div className="relative z-10">
                   <h3 className="font-space font-bold text-2xl md:text-3xl mb-6 flex items-center">
                     <PenTool className="h-8 w-8 mr-3 text-primary" />
@@ -112,7 +112,7 @@ const MainHome = () => {
                     Soluciones creativas para comunicar el valor de tu marca.
                     Diseño estratégico que conecta emocionalmente con tu audiencia.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="flex items-start">
                       <Palette className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
@@ -131,14 +131,14 @@ const MainHome = () => {
                       <span className="text-sm">Contenido Visual</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex justify-center">
                     <Link 
                       to="/studio"
-                      className="w-48 font-medium py-3 px-8 rounded-lg btn-gradient
+                      className="w-52 font-medium py-2 px-6 rounded-lg btn-gradient whitespace-nowrap
                       shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
                       focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
-                      text-center"
+                      text-center text-sm"
                     >
                       Impulsa tu marca
                     </Link>
@@ -148,7 +148,7 @@ const MainHome = () => {
             </div>
           </div>
         </section>
-        
+
         {/* Sección de Agenda */}
         <ScheduleSection />
       </main>
