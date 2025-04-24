@@ -1,0 +1,58 @@
+Estamos desarrollando un sitio para una marca unificada llamada **Soma**, que se divide en dos verticales:
+
+1. **SomaFlow**: automatización, sistemas, bots, dashboards  
+2. **SomaStudio**: branding, diseño web, animación, contenido visual
+
+🛠️ Ya tenemos construido en Replit lo siguiente:
+- Página `/flow`: contiene el landing completo de **SomaFlow**, con hero, beneficios, módulos, formulario para agendar llamada, fondo de partículas tipo sistema/red. Esta parte ya está lista y no debe modificarse.
+
+🎯 Ahora queremos construir las otras dos partes restantes:
+
+---
+
+## 📄 Página `/` → **Landing principal**
+Actúa como un **hub** de entrada para ambas verticales.
+
+Debe contener:
+- Hero principal con el mensaje:  
+  `"Soluciones que fluyen contigo."`
+- Breve descripción de lo que es Soma
+- Dos bloques diferenciados (sin cambiar color, solo formas, íconos o animación):
+  - **SomaFlow**  
+    Íconos técnicos, forma tipo nodos/conexiones, CTA: *Automatiza tu negocio* → lleva a `/flow`
+  - **SomaStudio**  
+    Íconos creativos, formas curvas, burbujas u orgánicas, CTA: *Impulsa tu marca* → lleva a `/studio`
+- Footer compartido
+
+Debe mantener:
+- Tipografía, navegación, espaciado y estilo unificado con `/flow`
+- Uso de `react-router-dom` para navegación entre rutas
+
+---
+
+## 📄 Página `/studio` → **Landing de SomaStudio**
+Debe tener misma estructura visual que `/flow`, pero adaptada a la rama de diseño:
+
+- Hero con enfoque creativo
+- Fondo animado con partículas suaves/orgánicas
+- Secciones:
+  - Servicios ofrecidos (branding, diseño, animación, etc.)
+  - Proyectos destacados o áreas de especialización
+  - CTA: “Quiero trabajar contigo”
+- Íconos creativos (pluma, pantalla, pincel, etc.)
+- Misma navbar y footer que en `/flow`
+
+No debe usar nuevos colores. La diferenciación será solo por:
+- Formas  
+- Movimiento  
+- Estilo de íconos  
+
+---
+
+✅ Tecnologías a usar:
+- React + TypeScript
+- Tailwind CSS
+- `react-router-dom`
+- `tsparticles` (solo si se necesita para los fondos diferenciados)
+
+Mantén todo modular, responsive y fácil de escalar. Evita puntos de fragmentación innecesarios.
