@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Layers, Copy, BarChart3 } from "lucide-react";
 
@@ -26,9 +26,65 @@ const benefits = [
 const BenefitsSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useScrollAnimation(titleRef);
-  refs.current.forEach(ref => useScrollAnimation(ref));
+  
+  // Use single useEffect for all refs
+  useEffect(() => {
+    // Apply scroll animation to title
+    if (titleRef.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+            }
+          });
+        }, 
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -10% 0px"
+        }
+      );
+      
+      observer.observe(titleRef.current);
+      
+      // Clean up
+      return () => {
+        if (titleRef.current) {
+          observer.unobserve(titleRef.current);
+        }
+      };
+    }
+  }, []);
+  
+  // Apply scroll animation to individual cards
+  useEffect(() => {
+    const cards = refs.current.filter(ref => ref !== null);
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          }
+        });
+      }, 
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -10% 0px"
+      }
+    );
+    
+    cards.forEach(card => {
+      if (card) observer.observe(card);
+    });
+    
+    // Clean up
+    return () => {
+      cards.forEach(card => {
+        if (card) observer.unobserve(card);
+      });
+    };
+  }, []);
 
   return (
     <section id="benefits" className="py-20 md:py-32 bg-dark-900 relative">
@@ -39,7 +95,7 @@ const BenefitsSection = () => {
             data-scroll="true"
             ref={titleRef}
           >
-            Beneficios <span className="text-primary">clave</span>
+            Beneficios <span className="text-primary font-script">clave</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">

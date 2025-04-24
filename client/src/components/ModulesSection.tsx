@@ -45,7 +45,7 @@ const ModulesSection = () => {
             data-scroll="true"
             ref={titleRef}
           >
-            Módulos <span className="text-primary">principales</span>
+            Módulos <span className="text-primary font-script">principales</span>
           </h2>
 
           <div 

@@ -16,6 +16,11 @@ export default {
           800: "#141620",
           900: "#0F1116",
         },
+        fontFamily: {
+          space: ['"Space Grotesk"', "sans-serif"], // O la fuente base que estés usando
+          script: ['"Satisfy"', "cursive"],
+        },
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
