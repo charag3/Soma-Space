@@ -9,19 +9,6 @@ import MainHome from "@/pages/Home";
 import FlowHome from "@/pages/FlowHome";
 import StudioHome from "@/pages/StudioHome";
 
-function Router() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainHome />} />
-        <Route path="/flow" element={<FlowHome />} />
-        <Route path="/studio" element={<StudioHome />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
