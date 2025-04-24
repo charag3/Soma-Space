@@ -141,16 +141,20 @@ const ScheduleSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulación de envío
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
       
-      // FUTURO: Integración con Google Calendar API
-      // Esta sección será reemplazada con la llamada real a la API de Google Calendar
-      // 1. Autenticar con credenciales OAuth2
-      // 2. Crear un evento en el calendario con los datos del formulario
-      // 3. Enviar confirmación al usuario
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al agendar la cita');
+      }
       
-      // Mostrar mensaje de éxito
       setIsSuccess(true);
     } catch (error) {
       console.error("Error al agendar la cita:", error);
