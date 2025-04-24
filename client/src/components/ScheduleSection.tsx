@@ -33,10 +33,26 @@ const ScheduleSection = () => {
   const [formData, setFormData] = useState<ScheduleFormData>({
     fullName: "",
     email: "",
-    date: "",
+    date: undefined,
     time: "",
     message: ""
   });
+  
+  // Función para manejar el cambio de fecha
+  const handleDateChange = (date: Date | undefined) => {
+    setFormData(prev => ({
+      ...prev,
+      date
+    }));
+    
+    // Limpiar error específico de la fecha
+    if (errors.date) {
+      setErrors(prev => ({
+        ...prev,
+        date: undefined
+      }));
+    }
+  };
   
   // Estado para manejar errores de validación
   const [errors, setErrors] = useState<FormErrors>({});
@@ -125,7 +141,7 @@ const ScheduleSection = () => {
       setFormData({
         fullName: "",
         email: "",
-        date: "",
+        date: undefined,
         time: "",
         message: ""
       });
@@ -200,43 +216,92 @@ const ScheduleSection = () => {
               
               {/* Fecha y Hora en Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Campo Fecha */}
+                {/* Campo Fecha con Popover y Calendar */}
                 <div>
                   <label htmlFor="date" className="flex items-center text-sm font-medium text-gray-300 mb-2">
-                    <Calendar className="w-4 h-4 mr-2 text-primary" />
+                    <CalendarIcon className="w-4 h-4 mr-2 text-primary" />
                     Fecha deseada
                   </label>
-                  <input
-                    type="date"
-                    id="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    className={`w-full bg-dark-800 border ${
-                      errors.date ? "border-red-500" : "border-dark-700"
-                    } focus:border-primary rounded-lg py-3 px-4 text-white transition-all focus:outline-none`}
-                  />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full bg-dark-800 border justify-start text-left font-normal",
+                          !formData.date && "text-gray-400",
+                          errors.date ? "border-red-500" : "border-dark-700"
+                        )}
+                      >
+                        {formData.date ? (
+                          format(formData.date, "PPP", { locale: es })
+                        ) : (
+                          <span>Selecciona una fecha</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 bg-dark-800 border-dark-700" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={formData.date}
+                        onSelect={handleDateChange}
+                        initialFocus
+                        locale={es}
+                        className="bg-dark-800 border-dark-700 text-white"
+                      />
+                    </PopoverContent>
+                  </Popover>
                   {errors.date && (
                     <p className="mt-1 text-sm text-red-500">{errors.date}</p>
                   )}
                 </div>
                 
-                {/* Campo Hora */}
+                {/* Campo Hora con Popover y opciones predefinidas */}
                 <div>
                   <label htmlFor="time" className="flex items-center text-sm font-medium text-gray-300 mb-2">
                     <Clock className="w-4 h-4 mr-2 text-primary" />
                     Hora preferida
                   </label>
-                  <input
-                    type="time"
-                    id="time"
-                    name="time"
-                    value={formData.time}
-                    onChange={handleChange}
-                    className={`w-full bg-dark-800 border ${
-                      errors.time ? "border-red-500" : "border-dark-700"
-                    } focus:border-primary rounded-lg py-3 px-4 text-white transition-all focus:outline-none`}
-                  />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full bg-dark-800 border justify-start text-left font-normal",
+                          !formData.time && "text-gray-400",
+                          errors.time ? "border-red-500" : "border-dark-700"
+                        )}
+                      >
+                        {formData.time ? (
+                          <span>{formData.time} horas</span>
+                        ) : (
+                          <span>Selecciona una hora</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-64 p-3 bg-dark-800 border-dark-700" align="start">
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm mb-3 text-gray-300">Horarios disponibles</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          {["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"].map((hora) => (
+                            <Button
+                              key={hora}
+                              variant={formData.time === hora ? "default" : "outline"}
+                              className="w-full bg-dark-800 border-dark-700 hover:bg-dark-700"
+                              onClick={() => {
+                                setFormData(prev => ({...prev, time: hora}));
+                                // Limpiar error específico de la hora
+                                if (errors.time) {
+                                  setErrors(prev => ({...prev, time: undefined}));
+                                }
+                              }}
+                            >
+                              {hora}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
                   {errors.time && (
                     <p className="mt-1 text-sm text-red-500">{errors.time}</p>
                   )}
