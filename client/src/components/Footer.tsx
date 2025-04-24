@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="text-center">
           <div className="mb-8 flex justify-center">
-            <img src="/attached_assets/Somaflowlofo h.png" alt="SomaFlow" className="h-8" />
+            <img src="/Somaflowlofo h.png" alt="SomaFlow" className="h-8" />
           </div>
           <div className="flex justify-center space-x-6">
             <a href="#" className="text-gray-400 hover:text-primary transition-colors">
