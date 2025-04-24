@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import ParticlesBackground from "./ParticlesBackground";
 
 const HeroSection = () => {
   const elementRef = useRef<HTMLDivElement>(null);
@@ -8,15 +7,7 @@ const HeroSection = () => {
   useScrollAnimation(elementRef);
 
   return (
-    <section className="pt-32 pb-12 md:pt-40 md:pb-16 relative overflow-hidden min-h-[80vh]">
-      {/* Particles background */}
-      <div className="absolute inset-0 z-0" style={{ height: "100%" }}>
-        <ParticlesBackground />
-      </div>
-
-      {/* Subtle gradient overlay that won't interfere with particle interaction */}
-      <div className="absolute inset-0 z-5 bg-gradient-to-b from-dark-900/40 via-dark-900/30 to-dark-900/80 pointer-events-none"></div>
-
+    <section className="flex items-center justify-center relative overflow-hidden min-h-screen">
       {/* Main content */}
       <div className="container mx-auto px-6 relative z-10">
         {" "}
