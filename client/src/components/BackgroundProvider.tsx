@@ -1,25 +1,21 @@
-
-import React, { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import ParticlesBackground from './ParticlesBackground';
 
-interface BackgroundContextType {
+// Contexto para gestionar el fondo con partículas
+interface BackgroundContextProps {
   showParticles: boolean;
 }
 
-const BackgroundContext = createContext<BackgroundContextType | undefined>(undefined);
+const BackgroundContext = createContext<BackgroundContextProps>({
+  showParticles: true,
+});
 
-export function useBackground() {
-  const context = useContext(BackgroundContext);
-  if (context === undefined) {
-    throw new Error('useBackground must be used within a BackgroundProvider');
-  }
-  return context;
-}
-
+// Props para el provider
 interface BackgroundProviderProps {
   children: ReactNode;
 }
 
+// Provider component
 export function BackgroundProvider({ children }: BackgroundProviderProps) {
   return (
     <BackgroundContext.Provider value={{ showParticles: true }}>
@@ -34,4 +30,9 @@ export function BackgroundProvider({ children }: BackgroundProviderProps) {
       {children}
     </BackgroundContext.Provider>
   );
+}
+
+// Hook para usar el contexto
+export function useBackground() {
+  return useContext(BackgroundContext);
 }

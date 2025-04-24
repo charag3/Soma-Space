@@ -37,8 +37,8 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         <a href="#schedule" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
           Agendar
         </a>
-        <a href="#schedule" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
-          Agendar llamada
+        <a href="#contact" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
+          Contacto
         </a>
       </nav>
     </div>
