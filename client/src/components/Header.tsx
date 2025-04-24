@@ -27,8 +27,8 @@ const Header = () => {
             <a href="#schedule" className="text-sm text-gray-300 hover:text-primary transition-colors">
               Agendar
             </a>
-            <a href="#contact" className="text-sm text-gray-300 hover:text-primary transition-colors">
-              Contacto
+            <a href="#schedule" className="text-sm text-gray-300 hover:text-primary transition-colors">
+              Agendar llamada
             </a>
           </nav>
           <button className="md:hidden text-gray-300 focus:outline-none" onClick={toggleMobileMenu}>
