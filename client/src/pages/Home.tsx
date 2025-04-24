@@ -81,7 +81,7 @@ const MainHome = () => {
                   
                   <Link 
                     to="/flow"
-                    className="w-full md:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
+                    className="w-full font-medium py-3 px-8 rounded-lg btn-gradient
                     shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
                     focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
                     inline-block text-center"
@@ -131,7 +131,7 @@ const MainHome = () => {
                   
                   <Link 
                     to="/studio"
-                    className="w-full md:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
+                    className="w-full font-medium py-3 px-8 rounded-lg btn-gradient
                     shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
                     focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900
                     inline-block text-center"

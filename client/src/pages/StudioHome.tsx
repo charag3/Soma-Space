@@ -262,35 +262,7 @@ const StudioHome = () => {
           </div>
         </section>
         
-        {/* CTA Section */}
-        <section id="contact" className="py-24 bg-dark-800">
-          <div className="container mx-auto px-6">
-            <div
-              className="max-w-4xl mx-auto bg-dark-900 rounded-2xl p-8 md:p-12 shadow-xl gradient-bg"
-              data-scroll="true"
-              ref={ctaRef}
-            >
-              <h2 className="font-space font-bold text-3xl md:text-4xl mb-6 text-center">
-                Hagamos algo <span className="text-primary">increíble</span> juntos
-              </h2>
-              <p className="text-gray-300 text-center mb-10 max-w-2xl mx-auto">
-                ¿Listo para llevar tu marca al siguiente nivel? Cuéntanos sobre tu proyecto y exploremos cómo podemos colaborar para crear diseños que cautiven a tu audiencia.
-              </p>
-              <div className="flex justify-center">
-                <a
-                  href="https://wa.me/527222419200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium py-3 px-8 rounded-lg btn-gradient
-                  shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
-                  focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-800"
-                >
-                  Quiero trabajar contigo
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ScheduleSection />
       </main>
       <Footer />
     </div>
