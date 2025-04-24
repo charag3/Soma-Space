@@ -26,10 +26,17 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <BackgroundProvider>
-          <Toaster />
-          <Router />
-        </BackgroundProvider>
+        <BrowserRouter>
+          <BackgroundProvider>
+            <Toaster />
+            <Routes>
+              <Route path="/" element={<MainHome />} />
+              <Route path="/flow" element={<FlowHome />} />
+              <Route path="/studio" element={<StudioHome />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BackgroundProvider>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );

@@ -1,5 +1,7 @@
 import { createContext, useContext, ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import ParticlesBackground from './ParticlesBackground';
+import StudioParticlesBackground from './StudioParticlesBackground';
 
 // Contexto para gestionar el fondo con partículas
 interface BackgroundContextProps {
@@ -17,11 +19,14 @@ interface BackgroundProviderProps {
 
 // Provider component
 export function BackgroundProvider({ children }: BackgroundProviderProps) {
+  const location = useLocation();
+  const isStudioPage = location.pathname === '/studio';
+  
   return (
     <BackgroundContext.Provider value={{ showParticles: true }}>
-      {/* Fondo de partículas fijo en toda la aplicación */}
+      {/* Fondo de partículas basado en la ruta actual */}
       <div className="fixed inset-0 z-0">
-        <ParticlesBackground />
+        {isStudioPage ? <StudioParticlesBackground /> : <ParticlesBackground />}
       </div>
       
       {/* Superposición sutil que no interfiere con la interacción de partículas */}

@@ -1,11 +1,13 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  navItems?: Array<{name: string, path: string}>;
 }
 
-const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+const MobileMenu = ({ isOpen, onClose, navItems = [] }: MobileMenuProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -28,18 +30,39 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         </svg>
       </button>
       <nav className="flex flex-col space-y-8 text-center">
-        <a href="#benefits" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
-          Beneficios
-        </a>
-        <a href="#modules" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
-          Soluciones
-        </a>
-        <a href="#schedule" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
-          Agendar
-        </a>
-        <a href="#contact" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
-          Contacto
-        </a>
+        {navItems.length > 0 ? (
+          navItems.map((item, index) => (
+            item.path.startsWith('#') ? (
+              <a 
+                key={index}
+                href={item.path} 
+                className="text-xl text-gray-300 hover:text-primary transition-colors" 
+                onClick={onClose}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link 
+                key={index}
+                to={item.path} 
+                className="text-xl text-gray-300 hover:text-primary transition-colors"
+                onClick={onClose}
+              >
+                {item.name}
+              </Link>
+            )
+          ))
+        ) : (
+          // Fallback si no hay elementos de navegación
+          <>
+            <a href="#" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
+              Inicio
+            </a>
+            <Link to="/" className="text-xl text-gray-300 hover:text-primary transition-colors" onClick={onClose}>
+              Volver al Hub
+            </Link>
+          </>
+        )}
       </nav>
     </div>
   );
