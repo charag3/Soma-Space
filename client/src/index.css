@@ -33,7 +33,11 @@
   }
 
   body {
-    @apply bg-dark-900 font-inter text-white antialiased;
+    @apply bg-black font-inter text-white antialiased;
+  }
+
+  #root {
+    @apply bg-dark-900;
   }
 
   html {
