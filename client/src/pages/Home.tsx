@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import CentralMessage from "@/components/CentralMessage";
 import BenefitsSection from "@/components/BenefitsSection";
 import ModulesSection from "@/components/ModulesSection";
+import ScheduleSection from "@/components/ScheduleSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -15,6 +16,7 @@ const Home = () => {
         <CentralMessage />
         <BenefitsSection />
         <ModulesSection />
+        <ScheduleSection />
         <ContactSection />
       </main>
       <Footer />
