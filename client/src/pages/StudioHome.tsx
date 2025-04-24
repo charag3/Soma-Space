@@ -45,12 +45,12 @@ const StudioHome = () => {
               </p>
               <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a
-                  href="#contact"
+                  href="#schedule"
                   className="w-full sm:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
                   shadow-[0_0_10px_rgba(29,204,133,0.2)]
                   focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900"
                 >
-                  Quiero trabajar contigo
+                  Agendar una llamada
                 </a>
                 <a
                   href="https://wa.me/527222419200"
