@@ -39,7 +39,7 @@ const HeroSection = () => {
             <a
               href="#contact"
               className="w-full sm:w-auto font-medium py-3 px-8 rounded-lg btn-gradient
-              shadow-[0_0_10px_rgba(46,233,220,0.2)]
+              shadow-[0_0_10px_rgba(29,204,133,0.2)]
               focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-900"
             >
               Agendar una llamada
@@ -48,7 +48,7 @@ const HeroSection = () => {
               href="https://wa.me/527222419200"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto text-primary hover:text-primary/90 border border-primary/30 hover:border-primary hover:shadow-[0_0_10px_rgba(46,233,220,0.2)] py-3 px-8 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full sm:w-auto text-primary hover:text-primary/90 border border-primary/30 hover:border-primary hover:shadow-[0_0_10px_rgba(29,204,133,0.2)] py-3 px-8 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary"
             >
               Escríbenos por WhatsApp
             </a>
