@@ -20,7 +20,8 @@ const ParticlesBackground = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        zIndex: 0
+        zIndex: 1,
+        pointerEvents: "auto"
       }}
       options={{
         fullScreen: {
