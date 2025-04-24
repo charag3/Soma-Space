@@ -95,7 +95,7 @@ const BenefitsSection = () => {
             data-scroll="true"
             ref={titleRef}
           >
-            Beneficios <span className="text-primary font-script">clave</span>
+            Beneficios <span className="text-primary">clave</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
