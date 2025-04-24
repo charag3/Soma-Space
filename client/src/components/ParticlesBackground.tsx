@@ -12,11 +12,25 @@ const ParticlesBackground = () => {
     <Particles
       id="tsparticles"
       init={particlesInit}
-      className="h-full w-full"
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 5
+      }}
       options={{
+        fullScreen: {
+          enable: false,
+          zIndex: 0
+        },
+        fpsLimit: 60,
         particles: {
           number: {
-            value: 40,
+            value: 80,
             density: {
               enable: true,
               value_area: 800
@@ -33,17 +47,17 @@ const ParticlesBackground = () => {
             }
           },
           opacity: {
-            value: 0.3,
+            value: 0.5,
             random: true,
             anim: {
-              enable: false,
+              enable: true,
               speed: 1,
               opacity_min: 0.1,
               sync: false
             }
           },
           size: {
-            value: 2,
+            value: 3,
             random: true,
             anim: {
               enable: false,
@@ -56,12 +70,12 @@ const ParticlesBackground = () => {
             enable: true,
             distance: 150,
             color: "#2EE9DC",
-            opacity: 0.2,
+            opacity: 0.3,
             width: 1
           },
           move: {
             enable: true,
-            speed: 1,
+            speed: 2,
             direction: "none",
             random: false,
             straight: false,
@@ -82,16 +96,16 @@ const ParticlesBackground = () => {
               mode: "grab"
             },
             onclick: {
-              enable: false,
+              enable: true,
               mode: "push"
             },
             resize: true
           },
           modes: {
             grab: {
-              distance: 140,
+              distance: 180,
               line_linked: {
-                opacity: 0.5
+                opacity: 0.8
               }
             },
             push: {
@@ -99,13 +113,9 @@ const ParticlesBackground = () => {
             }
           }
         },
-        retina_detect: true,
+        detectRetina: true,
         background: {
           color: "transparent",
-          image: "",
-          position: "50% 50%",
-          repeat: "no-repeat",
-          size: "cover"
         }
       }}
     />
