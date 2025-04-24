@@ -13,11 +13,11 @@ const Header = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-md py-4">
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="font-space font-bold text-xl text-white">
-            <span className="text-primary">Soma</span>Flow
+          <div className="h-8">
+            <img src="/attached_assets/Somaflowlofo h.png" alt="SomaFlow" className="h-full" />
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#benefits" className="text-sm text-gray-300 hover:text-primary transition-colors">
+            <a href="#benefits" className="text-sm font-light text-gray-300 hover:text-primary transition-colors">
               Beneficios
             </a>
             <a href="#modules" className="text-sm text-gray-300 hover:text-primary transition-colors">
