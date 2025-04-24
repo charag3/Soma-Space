@@ -12,6 +12,7 @@ const ParticlesBackground = () => {
     <Particles
       id="tsparticles"
       init={particlesInit}
+      className="h-full w-full"
       options={{
         particles: {
           number: {

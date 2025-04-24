@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <section className="pt-32 pb-24 md:pt-40 md:pb-32 relative overflow-hidden">
       {/* Particles background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 h-full">
         <ParticlesBackground />
       </div>
 
