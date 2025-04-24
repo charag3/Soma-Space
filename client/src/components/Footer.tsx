@@ -1,5 +1,5 @@
 import { Linkedin, Twitter, Instagram } from "lucide-react";
-import logoImage from "@/assets/SomaHorizontal.png";
+import logoImage from "@/assets/SPACE.png";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="text-center">
           <div className="mb-8 flex justify-center">
-            <img src={logoImage} alt="SomaFlow" className="h-8" />
+            <img src={logoImage} alt="SomaSpace" className="h-10" />
           </div>
           <div className="flex justify-center space-x-6">
             <a href="#" className="text-gray-400 hover:text-primary transition-colors">
