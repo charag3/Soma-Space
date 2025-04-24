@@ -60,7 +60,7 @@ const Header = () => {
                 <a 
                   key={index}
                   href={item.path} 
-                  className="text-sm text-gray-300 hover:text-primary transition-colors"
+                  className="text-xs uppercase tracking-widest text-gray-300 hover:text-primary transition-colors"
                 >
                   {item.name}
                 </a>
@@ -68,7 +68,7 @@ const Header = () => {
                 <Link 
                   key={index}
                   to={item.path} 
-                  className="text-sm text-gray-300 hover:text-primary transition-colors"
+                  className="text-xs uppercase tracking-widest text-gray-300 hover:text-primary transition-colors"
                 >
                   {item.name}
                 </Link>

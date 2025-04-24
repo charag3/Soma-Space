@@ -36,7 +36,7 @@ const MobileMenu = ({ isOpen, onClose, navItems = [] }: MobileMenuProps) => {
               <a 
                 key={index}
                 href={item.path} 
-                className="text-xl text-gray-300 hover:text-primary transition-colors" 
+                className="text-lg uppercase tracking-widest text-gray-300 hover:text-primary transition-colors" 
                 onClick={onClose}
               >
                 {item.name}
@@ -45,7 +45,7 @@ const MobileMenu = ({ isOpen, onClose, navItems = [] }: MobileMenuProps) => {
               <Link 
                 key={index}
                 to={item.path} 
-                className="text-xl text-gray-300 hover:text-primary transition-colors"
+                className="text-lg uppercase tracking-widest text-gray-300 hover:text-primary transition-colors"
                 onClick={onClose}
               >
                 {item.name}
