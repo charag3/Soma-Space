@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -33,7 +33,7 @@
   }
 
   body {
-    @apply bg-dark-900 font-inter text-white antialiased;
+    @apply bg-dark-900 font-space text-white antialiased;
   }
 
   html {
@@ -69,14 +69,16 @@
 
 @layer utilities {
   .font-space {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
   }
 
   .font-inter {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
   }
   
   .font-script {
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2em;
+    font-weight: 400;
   }
 }
