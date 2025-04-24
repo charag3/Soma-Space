@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
-import logoImage from "@/assets/SomaHorizontal.png";
+import logoSpace from "@/assets/SPACE.png";
+import logoFlow from "@/assets/FLOW.png";
+import logoStudio from "@/assets/studio.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,8 +48,11 @@ const Header = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-md py-4">
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <Link to="/" className="h-8">
-            <img src={logoImage} alt="Soma" className="h-full" />
+          <Link to="/" className="h-10">
+            {location.pathname === '/' && <img src={logoSpace} alt="SomaSpace" className="h-full" />}
+            {location.pathname === '/flow' && <img src={logoFlow} alt="SomaFlow" className="h-full" />}
+            {location.pathname === '/studio' && <img src={logoStudio} alt="SomaStudio" className="h-full" />}
+            {!['/flow', '/studio', '/'].includes(location.pathname) && <img src={logoSpace} alt="SomaSpace" className="h-full" />}
           </Link>
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item, index) => (

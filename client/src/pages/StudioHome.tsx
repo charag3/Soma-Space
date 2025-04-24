@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { PenTool, Layout, Palette, Film, Image, Lightbulb, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import StudioParticlesBackground from "@/components/StudioParticlesBackground";
+import ScheduleSection from "@/components/ScheduleSection";
 
 const StudioHome = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -291,6 +291,9 @@ const StudioHome = () => {
             </div>
           </div>
         </section>
+        
+        {/* Sección de Agenda */}
+        <ScheduleSection />
       </main>
       <Footer />
     </div>
