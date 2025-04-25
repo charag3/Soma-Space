@@ -5,7 +5,9 @@ import nodemailer from 'nodemailer';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Configuración del transporte de correo para Zoho
@@ -14,7 +16,7 @@ if (process.env.ZOHO_USER && process.env.ZOHO_PASS) {
   transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
     port: 587,
-    secure: false, // true para 465, false para otros puertos
+    secure: false,
     auth: {
       user: process.env.ZOHO_USER,
       pass: process.env.ZOHO_PASS
