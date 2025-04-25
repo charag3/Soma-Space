@@ -1,17 +1,13 @@
 import type { Express } from "express";
-import { createServer, type Server } from "http";
-import { storage } from "./storage";
 import { handleAppointment } from "./routes/appointments";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  app.post('/api/appointments', handleAppointment);
-  // put application routes here
-  // prefix all routes with /api
+// Puedes importar más handlers según los módulos que necesites
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+export async function registerRoutes(app: Express): Promise<void> {
+  // ✅ Ruta para agendar citas
+  app.post("/api/appointments", handleAppointment);
 
-  const httpServer = createServer(app);
-
-  return httpServer;
+  // 🛠 Aquí puedes seguir agregando más rutas
+  // app.get("/api/usuarios", getUsuarios);
+  // app.post("/api/contacto", enviarMensaje);
 }
