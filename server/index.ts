@@ -36,6 +36,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
 (async () => {
   const server = await registerRoutes(app);
 
@@ -71,4 +73,4 @@ server.listen(
     log(`🚀 Servidor corriendo en puerto ${port}`);
   }
 );
-
+})();
