@@ -1,0 +1,81 @@
+Actualiza el sistema de agendamiento en React + TypeScript + Tailwind + PostgreSQL para que capture, procese y almacene las siguientes variables:
+
+### 📋 Formulario (Frontend)
+
+Agrega un nuevo campo llamado `call_type` con un selector:
+
+- Opción 1: Llamada telefónica
+- Opción 2: Videollamada
+
+Cuando el usuario elige “Llamada telefónica”, debe mostrarse un campo adicional de tipo `tel` para capturar el número telefónico. Este campo debe ser obligatorio **solo si** se elige “Llamada telefónica”.
+
+Cuando el usuario elige “Videollamada”, no se muestra el campo de teléfono. En cambio, se debe generar dinámicamente un link de Jitsi con el siguiente formato:
+
+https://meet.jit.si/somaspace-{fecha}-{hora}
+
+markdown
+Copiar
+Editar
+
+Este link debe incluirse en los datos que se envían al backend.
+
+Al enviar el formulario:
+- Validar todos los campos requeridos
+- Enviar un `POST` al endpoint `/api/appointments` con los datos
+
+### 🧠 Backend (Node.js + Express + PostgreSQL)
+
+Actualiza el handler `/api/appointments` para que:
+1. Reciba y valide estos campos:
+   - `name`
+   - `email`
+   - `date`
+   - `time`
+   - `call_type`
+   - `message` (opcional)
+   - `phone` (solo si `call_type === 'telefono'`)
+   - `jitsi_url` (solo si `call_type === 'videollamada'`)
+
+2. Inserte los datos en la tabla `appointments` con la siguiente estructura:
+
+```sql
+CREATE TABLE appointments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  date DATE NOT NULL,
+  time TEXT NOT NULL,
+  call_type TEXT NOT NULL,
+  phone TEXT,
+  jitsi_url TEXT,
+  message TEXT,
+  created_at TIMESTAMP DEFAULT now()
+);
+Si call_type === 'videollamada', el backend también puede generar el link de Jitsi con:
+
+ts
+Copiar
+Editar
+const jitsiUrl = `https://meet.jit.si/somaspace-${date}-${time}`;
+Envía los datos completos a tu correo (hola@somaspace.site) usando nodemailer y Zoho SMTP.
+
+Asunto: Nueva cita agendada
+
+Cuerpo: todos los datos + link Jitsi si aplica
+
+Usa variables de entorno: ZOHO_USER y ZOHO_PASS
+
+El handler debe responder con JSON: { success: true, message: 'Cita agendada con éxito' } o error si falla algo.
+
+🔐 Extra
+Opcionalmente, deja comentado un bloque para conectar esta cita más adelante con Zoho Calendar mediante OAuth o Make.
+
+Mantén todo modular, limpio y con validación clara tanto en frontend como backend.
+
+yaml
+Copiar
+Editar
+
+---
+
+Con este prompt el bot puede dejar **todo listo para producción**, solo necesitas conectar tu `.env` y listo. ¿Q

@@ -1,12 +1,17 @@
 import { useRef, useState, FormEvent, ChangeEvent } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Calendar as CalendarIcon, Clock, Mail, MessageSquare, User, CheckCircle, RefreshCw } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, Mail, MessageSquare, User, CheckCircle, RefreshCw, Phone, Video } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+
+// Tipo para la modalidad de llamada
+type CallType = 'telefono' | 'videollamada';
 
 // Define tipos para el formulario
 interface ScheduleFormData {
@@ -15,6 +20,9 @@ interface ScheduleFormData {
   date: Date | undefined;
   time: string;
   message: string;
+  call_type: CallType | '';
+  phone?: string;
+  jitsi_url?: string;
 }
 
 // Define posibles errores en el formulario
@@ -24,6 +32,8 @@ interface FormErrors {
   date?: string;
   time?: string;
   message?: string;
+  call_type?: string;
+  phone?: string;
 }
 
 const ScheduleSection = () => {
@@ -35,7 +45,10 @@ const ScheduleSection = () => {
     email: "",
     date: undefined,
     time: "",
-    message: ""
+    message: "",
+    call_type: "",
+    phone: "",
+    jitsi_url: ""
   });
   
   // Función para manejar el cambio de fecha
@@ -126,7 +139,10 @@ const ScheduleSection = () => {
       email: "",
       date: undefined,
       time: "",
-      message: ""
+      message: "",
+      call_type: "",
+      phone: "",
+      jitsi_url: ""
     });
   };
   
