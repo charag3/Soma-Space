@@ -1,4 +1,4 @@
-import { useRef, useState, FormEvent, ChangeEvent } from "react";
+import { useRef, useState, FormEvent, ChangeEvent, useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Calendar as CalendarIcon, Clock, Mail, MessageSquare, User, CheckCircle, RefreshCw, Phone, Video } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
@@ -53,10 +53,20 @@ const ScheduleSection = () => {
   
   // Función para manejar el cambio de fecha
   const handleDateChange = (date: Date | undefined) => {
-    setFormData(prev => ({
-      ...prev,
-      date
-    }));
+    setFormData(prev => {
+      const updatedForm = {
+        ...prev,
+        date
+      };
+      
+      // Actualizar URL de Jitsi si es videollamada y ya tenemos fecha y hora
+      if (prev.call_type === 'videollamada' && date && prev.time) {
+        const dateStr = format(date, 'yyyy-MM-dd');
+        updatedForm.jitsi_url = `https://meet.jit.si/somaspace-${dateStr}-${prev.time}`;
+      }
+      
+      return updatedForm;
+    });
     
     // Limpiar error específico de la fecha
     if (errors.date) {
@@ -66,6 +76,8 @@ const ScheduleSection = () => {
       }));
     }
   };
+  
+
   
   // Estado para manejar errores de validación
   const [errors, setErrors] = useState<FormErrors>({});
@@ -92,6 +104,31 @@ const ScheduleSection = () => {
       setErrors(prev => ({
         ...prev,
         [name]: undefined
+      }));
+    }
+  };
+  
+  // Manejar el cambio de tipo de llamada
+  const handleCallTypeChange = (value: string) => {
+    const callType = value as CallType;
+    
+    // Actualizar los datos del formulario
+    setFormData(prev => {
+      // Si es videollamada, generar URL de Jitsi
+      if (callType === 'videollamada' && prev.date) {
+        const dateStr = format(prev.date, 'yyyy-MM-dd');
+        const jitsiUrl = `https://meet.jit.si/somaspace-${dateStr}-${prev.time}`;
+        return { ...prev, call_type: callType, jitsi_url: jitsiUrl, phone: '' };
+      } else {
+        return { ...prev, call_type: callType, jitsi_url: '' };
+      }
+    });
+    
+    // Limpiar el error de tipo de llamada
+    if (errors.call_type) {
+      setErrors(prev => ({
+        ...prev,
+        call_type: undefined
       }));
     }
   };
@@ -125,6 +162,16 @@ const ScheduleSection = () => {
     // Validar mensaje
     if (!formData.message.trim()) {
       newErrors.message = "El mensaje es requerido";
+    }
+    
+    // Validar tipo de llamada
+    if (!formData.call_type) {
+      newErrors.call_type = "Selecciona un tipo de llamada";
+    }
+    
+    // Validar teléfono si es llamada telefónica
+    if (formData.call_type === 'telefono' && (!formData.phone || !formData.phone.trim())) {
+      newErrors.phone = "El número de teléfono es requerido para llamadas telefónicas";
     }
     
     setErrors(newErrors);
@@ -337,7 +384,18 @@ const ScheduleSection = () => {
                                   variant={formData.time === hora ? "default" : "outline"}
                                   className="w-full bg-dark-800 border-dark-700 hover:bg-dark-700"
                                   onClick={() => {
-                                    setFormData(prev => ({...prev, time: hora}));
+                                    setFormData(prev => {
+                                      const updated = {...prev, time: hora};
+                                      
+                                      // Si es videollamada, actualizar la URL de Jitsi
+                                      if (prev.call_type === 'videollamada' && prev.date) {
+                                        const dateStr = format(prev.date, 'yyyy-MM-dd');
+                                        updated.jitsi_url = `https://meet.jit.si/somaspace-${dateStr}-${hora}`;
+                                      }
+                                      
+                                      return updated;
+                                    });
+                                    
                                     // Limpiar error específico de la hora
                                     if (errors.time) {
                                       setErrors(prev => ({...prev, time: undefined}));
@@ -356,6 +414,73 @@ const ScheduleSection = () => {
                       )}
                     </div>
                   </div>
+                  
+                  {/* Tipo de llamada */}
+                  <div>
+                    <label className="flex items-center text-sm font-medium text-gray-300 mb-2">
+                      <Phone className="w-4 h-4 mr-2 text-primary" />
+                      Tipo de llamada
+                    </label>
+                    <Select
+                      value={formData.call_type}
+                      onValueChange={handleCallTypeChange}
+                    >
+                      <SelectTrigger 
+                        className={`w-full bg-dark-800 border ${
+                          errors.call_type ? "border-red-500" : "border-dark-700"
+                        } focus:border-primary rounded-lg text-white`}
+                      >
+                        <SelectValue placeholder="Selecciona el tipo de llamada" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-dark-800 border-dark-700">
+                        <SelectItem value="telefono">Llamada telefónica</SelectItem>
+                        <SelectItem value="videollamada">Videollamada</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.call_type && (
+                      <p className="mt-1 text-sm text-red-500">{errors.call_type}</p>
+                    )}
+                  </div>
+                  
+                  {/* Número de teléfono (condicional) */}
+                  {formData.call_type === 'telefono' && (
+                    <div>
+                      <label htmlFor="phone" className="flex items-center text-sm font-medium text-gray-300 mb-2">
+                        <Phone className="w-4 h-4 mr-2 text-primary" />
+                        Número de teléfono
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className={`w-full bg-dark-800 border ${
+                          errors.phone ? "border-red-500" : "border-dark-700"
+                        } focus:border-primary rounded-lg py-3 px-4 text-white transition-all focus:outline-none`}
+                        placeholder="+34 123 456 789"
+                      />
+                      {errors.phone && (
+                        <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+                      )}
+                    </div>
+                  )}
+                  
+                  {/* URL de Jitsi (generada pero no visible) */}
+                  {formData.call_type === 'videollamada' && formData.jitsi_url && (
+                    <div className="bg-dark-800 border border-primary/30 rounded-lg p-3">
+                      <p className="flex items-center text-sm font-medium text-white mb-2">
+                        <Video className="w-4 h-4 mr-2 text-primary" />
+                        Enlace de videollamada
+                      </p>
+                      <p className="text-sm text-gray-300">
+                        Se generará un enlace de videollamada que recibirás por email.
+                      </p>
+                      <div className="mt-2 text-xs text-gray-400 break-all bg-dark-900 p-2 rounded border border-dark-700">
+                        {formData.jitsi_url}
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Campo Mensaje */}
                   <div>
