@@ -167,25 +167,25 @@ const StudioHome = () => {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* E-commerce */}
+                {/* Animación Digital */}
                 <div className="bg-dark-800 p-8 rounded-xl relative overflow-hidden group">
                   <div className="absolute top-0 left-0 w-2 h-full bg-primary"></div>
-                  <h3 className="text-xl font-bold mb-4 pl-4">E-commerce</h3>
+                  <h3 className="text-xl font-bold mb-4 pl-4">Animación Digital</h3>
                   <p className="text-gray-400 pl-4 mb-4">
-                    Diseño de tiendas online que optimizan la experiencia de compra y aumentan las conversiones.
+                    Creación de animaciones que dan vida a tus ideas y comunican tu mensaje de manera impactante.
                   </p>
                   <ul className="space-y-2 pl-4">
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">Diseño de catálogos de productos</span>
+                      <span className="text-sm text-gray-300">Motion graphics para marcas</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">Optimización del proceso de compra</span>
+                      <span className="text-sm text-gray-300">Animación para redes sociales</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">UX/UI para mayor conversión</span>
+                      <span className="text-sm text-gray-300">Animación de logos e identidad</span>
                     </li>
                   </ul>
                 </div>
@@ -213,25 +213,25 @@ const StudioHome = () => {
                   </ul>
                 </div>
                 
-                {/* Servicios Profesionales */}
+                {/* Marcas Creativas */}
                 <div className="bg-dark-800 p-8 rounded-xl relative overflow-hidden group">
                   <div className="absolute top-0 left-0 w-2 h-full bg-primary"></div>
-                  <h3 className="text-xl font-bold mb-4 pl-4">Servicios Profesionales</h3>
+                  <h3 className="text-xl font-bold mb-4 pl-4">Marcas Creativas</h3>
                   <p className="text-gray-400 pl-4 mb-4">
-                    Comunicación visual que transmite profesionalismo, confianza y especialización.
+                    Branding y diseño para negocios creativos con proyectos como Schwan Cosmetics, Jesalo y Las del Barrio.
                   </p>
                   <ul className="space-y-2 pl-4">
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">Branding corporativo</span>
+                      <span className="text-sm text-gray-300">Branding con personalidad</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">Presentaciones y propuestas</span>
+                      <span className="text-sm text-gray-300">Diseño para emprendedores</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">Sitios web institucionales</span>
+                      <span className="text-sm text-gray-300">Experiencias digitales únicas</span>
                     </li>
                   </ul>
                 </div>

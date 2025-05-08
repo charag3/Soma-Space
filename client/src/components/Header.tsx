@@ -16,8 +16,10 @@ const Header = () => {
     if (location.pathname === '/') {
       setNavItems([
         { name: 'Inicio', path: '/' },
-        { name: 'SomaFlow', path: '/flow' },
-        { name: 'SomaStudio', path: '/studio' }
+        { name: 'Flow', path: '/flow' },
+        { name: 'Studio', path: '/studio' },
+        { name: 'Portafolio', path: '/portfolio' },
+        { name: 'Contacto', path: '/contact' }
       ]);
     } 
     // Página de SomaFlow
@@ -26,7 +28,8 @@ const Header = () => {
         { name: 'Hub', path: '/' },
         { name: 'Beneficios', path: '#benefits' },
         { name: 'Soluciones', path: '#modules' },
-        { name: 'Agendar', path: '#schedule' }
+        { name: 'Portafolio', path: '/portfolio' },
+        { name: 'Contacto', path: '#schedule' }
       ]);
     } 
     // Página de SomaStudio
@@ -35,7 +38,26 @@ const Header = () => {
         { name: 'Hub', path: '/' },
         { name: 'Servicios', path: '#servicios' },
         { name: 'Proyectos', path: '#proyectos' },
+        { name: 'Portafolio', path: '/portfolio' },
         { name: 'Contacto', path: '#contact' }
+      ]);
+    }
+    // Página de Portafolio
+    else if (location.pathname === '/portfolio') {
+      setNavItems([
+        { name: 'Inicio', path: '/' },
+        { name: 'Flow', path: '/flow' },
+        { name: 'Studio', path: '/studio' },
+        { name: 'Contacto', path: '/contact' }
+      ]);
+    }
+    // Página de Contacto
+    else if (location.pathname === '/contact') {
+      setNavItems([
+        { name: 'Inicio', path: '/' },
+        { name: 'Flow', path: '/flow' },
+        { name: 'Studio', path: '/studio' },
+        { name: 'Portafolio', path: '/portfolio' }
       ]);
     }
   }, [location.pathname]);

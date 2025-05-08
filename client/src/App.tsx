@@ -8,6 +8,8 @@ import NotFound from "@/pages/not-found";
 import MainHome from "@/pages/Home";
 import FlowHome from "@/pages/FlowHome";
 import StudioHome from "@/pages/StudioHome";
+import Portfolio from "@/pages/Portfolio";
+import Contact from "@/pages/Contact";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
               <Route path="/" element={<MainHome />} />
               <Route path="/flow" element={<FlowHome />} />
               <Route path="/studio" element={<StudioHome />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BackgroundProvider>
