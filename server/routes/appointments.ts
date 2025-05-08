@@ -63,16 +63,26 @@ async function sendTelegramNotification(message: string): Promise<boolean> {
     
     const telegramApiUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
     
-    await axios.post(telegramApiUrl, {
+    console.log('🔄 Enviando mensaje a Telegram... Bot Token parcial:', 
+                process.env.TELEGRAM_BOT_TOKEN?.substring(0, 6) + '...',
+                'Chat ID:', process.env.TELEGRAM_CHAT_ID);
+    
+    const response = await axios.post(telegramApiUrl, {
       chat_id: process.env.TELEGRAM_CHAT_ID,
       text: message,
       parse_mode: 'HTML'
     });
     
-    console.log('✅ Notificación de Telegram enviada correctamente');
-    return true;
-  } catch (error) {
-    console.error('❌ Error al enviar notificación por Telegram:', error);
+    if (response.data && response.data.ok) {
+      console.log('✅ Notificación de Telegram enviada correctamente');
+      return true;
+    } else {
+      console.error('❌ Respuesta de error de Telegram:', response.data);
+      return false;
+    }
+  } catch (error: any) {
+    console.error('❌ Error al enviar notificación por Telegram:', 
+                  error.response?.data || error.message || error);
     return false;
   }
 }

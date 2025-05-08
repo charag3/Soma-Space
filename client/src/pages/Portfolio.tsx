@@ -5,55 +5,88 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useBackground } from "@/components/BackgroundProvider";
 
-// Placeholders para proyectos de Behance (reemplazar luego con imágenes reales)
+// Proyectos reales de Behance
 const behanceProjects = [
   {
     id: 1,
-    title: "Schwan Cosmetics",
-    description: "Diseño de marca y piezas digitales para empresa de cosméticos.",
-    category: "Branding",
-    behanceUrl: "https://www.behance.net/kreatuagency",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Schwan+Cosmetics"
+    title: "Pollo Pillo",
+    description: "Branding y diseño para redes sociales",
+    category: "Branding, Social Media",
+    tools: ["Figma", "Canva", "Adobe Photoshop", "Illustrator", "Midjourney"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/Pollo-Pillo",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Pollo+Pillo"
   },
   {
     id: 2,
-    title: "Jesalo",
-    description: "Identidad visual y estrategia para marca de wellness.",
-    category: "Branding, UX/UI",
-    behanceUrl: "https://www.behance.net/kreatuagency",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Jesalo"
+    title: "Midjourney-journey",
+    description: "Exploración visual con inteligencia artificial",
+    category: "IA, Diseño Conceptual",
+    tools: ["Midjourney", "Adobe Photoshop"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/Midjourney-journey",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Midjourney+Journey"
   },
   {
     id: 3,
-    title: "Las del Barrio",
-    description: "Diseño de identidad y experiencia digital para restaurante.",
-    category: "Branding, Diseño Web",
-    behanceUrl: "https://www.behance.net/kreatuagency",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Las+del+Barrio"
+    title: "OLHY",
+    description: "Diseño de identidad visual",
+    category: "Branding, Identidad",
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/OLHY",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=OLHY"
   },
   {
     id: 4,
-    title: "Animación de Logotipo",
-    description: "Motion graphics para dar vida a identidad corporativa.",
-    category: "Animación Digital",
-    behanceUrl: "https://www.behance.net/kreatuagency",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Animación+Logo"
+    title: "R&G",
+    description: "Diseño de logotipo y branding",
+    category: "Logotipos, Branding",
+    tools: ["Adobe Illustrator"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/RG",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=R%26G"
   },
   {
     id: 5,
-    title: "Campaña Digital",
-    description: "Serie de piezas animadas para redes sociales.",
-    category: "Contenido Visual",
-    behanceUrl: "https://www.behance.net/kreatuagency",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Campaña+Digital"
+    title: "TWR",
+    description: "Desarrollo de identidad corporativa",
+    category: "Identidad Corporativa",
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/TWR",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=TWR"
   },
   {
     id: 6,
-    title: "Sitio Web Corporativo",
-    description: "Diseño y desarrollo de sitio web responsivo.",
-    category: "Diseño Web, UX/UI",
-    behanceUrl: "https://www.behance.net/kreatuagency",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Sitio+Web"
+    title: "Inno Day Americas 2024",
+    description: "Diseño de materiales para evento corporativo",
+    category: "Diseño Editorial",
+    tools: ["Adobe InDesign", "Adobe Illustrator"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/Inno-Day-Americas-2024",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Inno+Day+Americas"
+  },
+  {
+    id: 7,
+    title: "Anticitera",
+    description: "Ilustración y diseño conceptual",
+    category: "Ilustración, Conceptual",
+    tools: ["Adobe Photoshop", "Adobe Illustrator"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/Anticitera",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Anticitera"
+  },
+  {
+    id: 8,
+    title: "LA ISLA",
+    description: "Branding para marca de moda",
+    category: "Moda, Branding",
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/LA-ISLA",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=LA+ISLA"
+  },
+  {
+    id: 9,
+    title: "Jesalo",
+    description: "Diseño de identidad visual",
+    category: "Branding, UX/UI",
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
+    behanceUrl: "https://www.behance.net/gallery/209338115/Jesalo",
+    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Jesalo"
   }
 ];
 
@@ -93,7 +126,7 @@ const Portfolio = () => {
                 shadow-[0_0_10px_rgba(29,204,133,0.2)] hover:shadow-[0_0_15px_rgba(29,204,133,0.4)]
                 focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                Ver en Behance <ExternalLink className="ml-2 h-4 w-4" />
+                Ver perfil en Behance <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </div>
           </div>
@@ -134,7 +167,17 @@ const Portfolio = () => {
                     <div className="p-6">
                       <span className="text-xs text-primary uppercase tracking-wider">{project.category}</span>
                       <h3 className="text-xl font-bold mt-2 mb-3">{project.title}</h3>
-                      <p className="text-gray-400 text-sm">{project.description}</p>
+                      <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tools?.map((tool, index) => (
+                          <span 
+                            key={index} 
+                            className="text-xs bg-dark-800 text-gray-300 px-2 py-1 rounded-md"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}

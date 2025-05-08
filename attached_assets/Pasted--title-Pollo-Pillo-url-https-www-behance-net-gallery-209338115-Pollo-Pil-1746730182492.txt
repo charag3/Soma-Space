@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Pollo Pillo",
+    "url": "https://www.behance.net/gallery/209338115/Pollo-Pillo",
+    "type": "Branding y diseño para redes sociales",
+    "tools": ["Figma", "Canva", "Adobe Photoshop", "Illustrator", "Midjourney"]
+  },
+  {
+    "title": "Midjourney-journey",
+    "url": "https://www.behance.net/gallery/209338115/Midjourney-journey",
+    "type": "Exploración visual con inteligencia artificial",
+    "tools": ["Midjourney", "Adobe Photoshop"]
+  },
+  {
+    "title": "OLHY",
+    "url": "https://www.behance.net/gallery/209338115/OLHY",
+    "type": "Diseño de identidad visual",
+    "tools": ["Adobe Illustrator", "Adobe Photoshop"]
+  },
+  {
+    "title": "R&G",
+    "url": "https://www.behance.net/gallery/209338115/RG",
+    "type": "Diseño de logotipo y branding",
+    "tools": ["Adobe Illustrator"]
+  },
+  {
+    "title": "TWR",
+    "url": "https://www.behance.net/gallery/209338115/TWR",
+    "type": "Desarrollo de identidad corporativa",
+    "tools": ["Adobe Illustrator", "Adobe Photoshop"]
+  },
+  {
+    "title": "Inno Day Americas 2024",
+    "url": "https://www.behance.net/gallery/209338115/Inno-Day-Americas-2024",
+    "type": "Diseño de materiales para evento corporativo",
+    "tools": ["Adobe InDesign", "Adobe Illustrator"]
+  },
+  {
+    "title": "Anticitera",
+    "url": "https://www.behance.net/gallery/209338115/Anticitera",
+    "type": "Ilustración y diseño conceptual",
+    "tools": ["Adobe Photoshop", "Adobe Illustrator"]
+  },
+  {
+    "title": "LA ISLA",
+    "url": "https://www.behance.net/gallery/209338115/LA-ISLA",
+    "type": "Branding para marca de moda",
+    "tools": ["Adobe Illustrator", "Adobe Photoshop"]
+  },
+  {
+    "title": "Jesalo",
+    "url": "https://www.behance.net/gallery/209338115/Jesalo",
+    "type": "Diseño de identidad visual",
+    "tools": ["Adobe Illustrator", "Adobe Photoshop"]
+  },
+  {
+    "title": "Las Del Barrio",
+    "url": "https://www.behance.net/gallery/209338115/Las-Del-Barrio",
+    "type": "Branding y diseño para redes sociales",
+    "tools": ["Figma", "Adobe Photoshop"]
+  },
+  {
+    "title": "LGL",
+    "url": "https://www.behance.net/gallery/209338115/LGL",
+    "type": "Diseño de logotipo y branding",
+    "tools": ["Adobe Illustrator"]
+  },
+  {
+    "title": "Wood Matic",
+    "url": "https://www.behance.net/gallery/209338115/Wood-Matic",
+    "type": "Diseño de identidad para empresa de carpintería",
+    "tools": ["Adobe Illustrator", "Adobe Photoshop"]
+  }
+]
