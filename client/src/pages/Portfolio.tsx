@@ -5,6 +5,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useBackground } from "@/components/BackgroundProvider";
 
+import polloPillo from "@/assets/pollo_pillo.jpg";
+import jesalo from "@/assets/jesalo.jpg";
+import laIsla from "@/assets/la_isla.jpg";
+import ohly from "@/assets/ohly.jpg";
+import innoday from "@/assets/innoday.jpg";
+import anticitera from "@/assets/Anticitera.jpg";
+import ruiz from "@/assets/ruiz.jpg";
+import woodmatic from "@/assets/woodmatic.jpg";
+import woof from "@/assets/woof.jpg";
+
 // Proyectos reales de Behance
 const behanceProjects = [
   {
@@ -14,7 +24,7 @@ const behanceProjects = [
     category: "Branding, Social Media",
     tools: ["Figma", "Canva", "Adobe Photoshop", "Illustrator", "Midjourney"],
     behanceUrl: "https://www.behance.net/gallery/209338115/Pollo-Pillo",
-    imageUrl: "assets/pollo-pillo.jpg",
+    imageUrl: polloPillo,
   },
   {
     id: 2,
@@ -23,8 +33,7 @@ const behanceProjects = [
     category: "IA, Diseño Conceptual",
     tools: ["Midjourney", "Adobe Photoshop"],
     behanceUrl: "https://www.behance.net/gallery/209338115/Midjourney-journey",
-    imageUrl:
-      "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Midjourney+Journey",
+    imageUrl: woodmatic,
   },
   {
     id: 3,
@@ -33,7 +42,7 @@ const behanceProjects = [
     category: "Branding, Identidad",
     tools: ["Adobe Illustrator", "Adobe Photoshop"],
     behanceUrl: "https://www.behance.net/gallery/209338115/OLHY",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=OLHY",
+    imageUrl: ohly,
   },
   {
     id: 4,
@@ -42,16 +51,16 @@ const behanceProjects = [
     category: "Logotipos, Branding",
     tools: ["Adobe Illustrator"],
     behanceUrl: "https://www.behance.net/gallery/209338115/RG",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=R%26G",
+    imageUrl: ruiz,
   },
   {
     id: 5,
-    title: "TWR",
+    title: "WOOF",
     description: "Desarrollo de identidad corporativa",
     category: "Identidad Corporativa",
     tools: ["Adobe Illustrator", "Adobe Photoshop"],
-    behanceUrl: "https://www.behance.net/gallery/209338115/TWR",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=TWR",
+    behanceUrl: "https://www.behance.net/gallery/209338115/WOOF",
+    imageUrl: woof,
   },
   {
     id: 6,
@@ -59,10 +68,8 @@ const behanceProjects = [
     description: "Diseño de materiales para evento corporativo",
     category: "Diseño Editorial",
     tools: ["Adobe InDesign", "Adobe Illustrator"],
-    behanceUrl:
-      "https://www.behance.net/gallery/209338115/Inno-Day-Americas-2024",
-    imageUrl:
-      "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Inno+Day+Americas",
+    behanceUrl: "https://www.behance.net/gallery/209338115/Inno-Day-Americas-2024",
+    imageUrl: innoday,
   },
   {
     id: 7,
@@ -71,8 +78,7 @@ const behanceProjects = [
     category: "Ilustración, Conceptual",
     tools: ["Adobe Photoshop", "Adobe Illustrator"],
     behanceUrl: "https://www.behance.net/gallery/209338115/Anticitera",
-    imageUrl:
-      "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Anticitera",
+    imageUrl: anticitera,
   },
   {
     id: 8,
@@ -81,7 +87,7 @@ const behanceProjects = [
     category: "Moda, Branding",
     tools: ["Adobe Illustrator", "Adobe Photoshop"],
     behanceUrl: "https://www.behance.net/gallery/209338115/LA-ISLA",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=LA+ISLA",
+    imageUrl: laIsla,
   },
   {
     id: 9,
@@ -90,7 +96,7 @@ const behanceProjects = [
     category: "Branding, UX/UI",
     tools: ["Adobe Illustrator", "Adobe Photoshop"],
     behanceUrl: "https://www.behance.net/gallery/209338115/Jesalo",
-    imageUrl: "https://via.placeholder.com/600x400/1a1a1a/2ee9dc?text=Jesalo",
+    imageUrl: jesalo,
   },
 ];
 
