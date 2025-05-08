@@ -7,6 +7,7 @@ import { es } from 'date-fns/locale';
 import axios from 'axios';
 
 // Configuración de la conexión a PostgreSQL
+// Usar la base de datos local de replit
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
