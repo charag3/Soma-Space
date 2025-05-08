@@ -47,7 +47,7 @@ async function startServer() {
     });
 
     if (process.env.NODE_ENV === "development") {
-      await setupVite(app); // No pasamos 'server', ya no usamos createServer
+      await setupVite(app);
     } else {
       serveStatic(app);
     }
