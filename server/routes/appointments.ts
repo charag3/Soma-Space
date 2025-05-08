@@ -3,6 +3,8 @@ import { Request, Response } from 'express';
 import { Pool } from 'pg';
 import nodemailer from 'nodemailer';
 import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+import axios from 'axios';
 
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
@@ -22,7 +24,7 @@ async function testDBConnection() {
   }
 }
 
-// Probar la conexión al iniciar
+// Verificar la conexión al iniciar
 testDBConnection();
 
 // Configuración del transporte de correo para Zoho
@@ -49,6 +51,115 @@ if (process.env.ZOHO_USER && process.env.ZOHO_PASS) {
       console.log('✅ Servidor de correo listo para enviar mensajes');
     }
   });
+}
+
+// Función para enviar notificaciones por Telegram
+async function sendTelegramNotification(message: string): Promise<boolean> {
+  try {
+    if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
+      console.warn('⚠️ No se han configurado las credenciales de Telegram');
+      return false;
+    }
+    
+    const telegramApiUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
+    
+    await axios.post(telegramApiUrl, {
+      chat_id: process.env.TELEGRAM_CHAT_ID,
+      text: message,
+      parse_mode: 'HTML'
+    });
+    
+    console.log('✅ Notificación de Telegram enviada correctamente');
+    return true;
+  } catch (error) {
+    console.error('❌ Error al enviar notificación por Telegram:', error);
+    return false;
+  }
+}
+
+// Función para crear evento en el calendario de Zoho a través de su API de correo
+async function createZohoCalendarEvent(
+  subject: string, 
+  description: string, 
+  startDate: Date,
+  endDate: Date,
+  emailTo: string,
+  callType: string,
+  phone?: string,
+  meetingUrl?: string
+): Promise<boolean> {
+  try {
+    if (!transporter) {
+      console.warn('⚠️ No se ha configurado el transporte de correo para Zoho');
+      return false;
+    }
+    
+    // Formato de fecha compatible con calendarios: YYYYMMDDTHHMMSSZ
+    const formatDateForCalendar = (date: Date) => {
+      return format(date, "yyyyMMdd'T'HHmmss'Z'");
+    };
+    
+    const startDateFormatted = formatDateForCalendar(startDate);
+    const endDateFormatted = formatDateForCalendar(endDate);
+    const now = formatDateForCalendar(new Date());
+    
+    // Crear un identificador único para el evento
+    const eventId = `soma-appointment-${Date.now()}@somaspace.site`;
+    
+    // Generar el contenido del calendario iCalendar (RFC 5545)
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SomaSpace//Appointment Calendar//ES
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+UID:${eventId}
+DTSTAMP:${now}
+DTSTART:${startDateFormatted}
+DTEND:${endDateFormatted}
+SUMMARY:${subject}
+DESCRIPTION:${description.replace(/\n/g, '\\n')}
+LOCATION:${callType === 'videollamada' ? 'Videollamada' : 'Llamada telefónica'}
+${callType === 'videollamada' && meetingUrl ? `URL:${meetingUrl}\n` : ''}
+ORGANIZER;CN=SomaSpace:mailto:${process.env.ZOHO_USER}
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:${emailTo}
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+    
+    // Enviar correo con evento adjunto - para agregar al calendario de Zoho
+    await transporter.sendMail({
+      from: process.env.ZOHO_USER,
+      to: process.env.ZOHO_USER,
+      subject: `[CALENDARIO] ${subject}`,
+      html: `
+        <p>Este es un correo automático para agregar un evento al calendario.</p>
+        <p><strong>Asunto:</strong> ${subject}</p>
+        <p><strong>Fecha:</strong> ${format(startDate, 'd MMMM yyyy', { locale: es })}</p>
+        <p><strong>Hora:</strong> ${format(startDate, 'HH:mm')} - ${format(endDate, 'HH:mm')}</p>
+        <p><strong>Tipo:</strong> ${callType === 'videollamada' ? 'Videollamada' : 'Llamada telefónica'}</p>
+        ${callType === 'telefono' ? `<p><strong>Teléfono:</strong> ${phone}</p>` : ''}
+        ${callType === 'videollamada' && meetingUrl ? `<p><strong>Enlace:</strong> <a href="${meetingUrl}">${meetingUrl}</a></p>` : ''}
+      `,
+      icalEvent: {
+        filename: 'event.ics',
+        method: 'REQUEST',
+        content: icsContent
+      }
+    });
+    
+    console.log('✅ Evento agregado al calendario de Zoho');
+    return true;
+  } catch (error) {
+    console.error('❌ Error al crear evento en el calendario de Zoho:', error);
+    return false;
+  }
 }
 
 // Función para generar un archivo ICS (calendario)
@@ -166,6 +277,14 @@ export const handleAppointment = async (req: Request, res: Response) => {
     const appointmentId = insertResult.rows[0].id;
     console.log(`✅ Cita creada con ID: ${appointmentId}`);
 
+    // Convertir la fecha y hora de string a objeto Date
+    const [year, month, day] = date.split('-').map(num => parseInt(num, 10));
+    const [hours, minutes] = time.split(':').map(num => parseInt(num, 10));
+    
+    const appointmentDate = new Date(year, month - 1, day, hours, minutes, 0);
+    const endTime = new Date(appointmentDate);
+    endTime.setHours(endTime.getHours() + 1); // La cita dura 1 hora
+    
     // Generar archivo ICS para el calendario
     const icsContent = generateICSFile(fullName, date, time, call_type, phone, jitsi_url);
 
@@ -177,7 +296,7 @@ export const handleAppointment = async (req: Request, res: Response) => {
           <h2>Nueva cita agendada</h2>
           <p><strong>Nombre:</strong> ${fullName}</p>
           <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Fecha:</strong> ${date}</p>
+          <p><strong>Fecha:</strong> ${format(appointmentDate, 'd MMMM yyyy', { locale: es })}</p>
           <p><strong>Hora:</strong> ${time}</p>
           <p><strong>Tipo de llamada:</strong> ${call_type === 'telefono' ? 'Llamada telefónica' : 'Videollamada'}</p>
         `;
@@ -199,7 +318,7 @@ export const handleAppointment = async (req: Request, res: Response) => {
         await transporter.sendMail({
           from: process.env.ZOHO_USER,
           to: process.env.ZOHO_USER, // Enviar al mismo usuario que es el administrador
-          subject: `Nueva cita: ${fullName} - ${date} ${time}`,
+          subject: `Nueva cita: ${fullName} - ${format(appointmentDate, 'd MMM yyyy', { locale: es })} ${time}`,
           html: emailBody,
           attachments: [
             {
@@ -219,7 +338,7 @@ export const handleAppointment = async (req: Request, res: Response) => {
           html: `
             <h2>¡Tu cita ha sido agendada con éxito!</h2>
             <p>Hola ${fullName},</p>
-            <p>Hemos confirmado tu cita para el día ${date} a las ${time}.</p>
+            <p>Hemos confirmado tu cita para el día ${format(appointmentDate, 'd MMMM yyyy', { locale: es })} a las ${time}.</p>
             ${call_type === 'videollamada' && jitsi_url ? 
               `<p>Para tu videollamada, utiliza este enlace a la hora programada: 
                 <a href="${jitsi_url}">${jitsi_url}</a>
@@ -239,12 +358,79 @@ export const handleAppointment = async (req: Request, res: Response) => {
           ]
         });
         console.log('✅ Correo de confirmación enviado al usuario');
+        
+        // Crear evento en el calendario de Zoho
+        const appointmentSubject = `Cita con ${fullName}`;
+        let appointmentDescription = `
+          Nombre: ${fullName}
+          Email: ${email}
+          Fecha: ${format(appointmentDate, 'd MMMM yyyy', { locale: es })}
+          Hora: ${time}
+          Tipo: ${call_type === 'telefono' ? 'Llamada telefónica' : 'Videollamada'}
+        `;
+        
+        if (call_type === 'telefono') {
+          appointmentDescription += `\nTeléfono: ${phone}`;
+        }
+        
+        if (message) {
+          appointmentDescription += `\nMensaje: ${message}`;
+        }
+        
+        // Agregar evento al calendario de Zoho
+        await createZohoCalendarEvent(
+          appointmentSubject,
+          appointmentDescription,
+          appointmentDate,
+          endTime,
+          email,
+          call_type,
+          phone,
+          jitsi_url
+        );
+        
       } catch (emailError) {
         console.error('❌ Error al enviar correo electrónico:', emailError);
         // Continuar aunque falle el envío de correo
       }
     } else {
       console.warn('⚠️ No se configuró el transporte de correo. No se enviarán notificaciones por email.');
+    }
+    
+    // Enviar notificación a Telegram
+    try {
+      // Formatear la fecha para Telegram
+      const formattedDate = format(appointmentDate, 'd MMMM yyyy', { locale: es });
+      
+      let telegramMessage = `
+<b>🔔 Nueva cita agendada</b>
+
+<b>Nombre:</b> ${fullName}
+<b>Email:</b> ${email}
+<b>Fecha:</b> ${formattedDate}
+<b>Hora:</b> ${time}
+<b>Tipo:</b> ${call_type === 'telefono' ? '📞 Llamada telefónica' : '🖥️ Videollamada'}
+`;
+
+      if (call_type === 'telefono' && phone) {
+        telegramMessage += `<b>Teléfono:</b> ${phone}\n`;
+      }
+      
+      if (call_type === 'videollamada' && jitsi_url) {
+        telegramMessage += `<b>Enlace:</b> ${jitsi_url}\n`;
+      }
+      
+      if (message) {
+        telegramMessage += `\n<b>Mensaje:</b> ${message}\n`;
+      }
+      
+      telegramMessage += `\n<b>ID:</b> ${appointmentId}`;
+      
+      await sendTelegramNotification(telegramMessage);
+      
+    } catch (telegramError) {
+      console.error('❌ Error al enviar notificación por Telegram:', telegramError);
+      // Continuar aunque falle el envío por Telegram
     }
 
     res.status(200).json({ success: true, message: 'Cita agendada con éxito.', appointmentId });
