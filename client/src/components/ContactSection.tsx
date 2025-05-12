@@ -27,7 +27,7 @@ const ContactSection = () => {
       time: "",
       call_type: "telefono",
       phone: "",
-      jitsi_url: ""
+      jitsi_url: "",
     },
   });
 
