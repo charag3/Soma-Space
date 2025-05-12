@@ -1,4 +1,3 @@
-import { Linkedin, Twitter, Instagram } from "lucide-react";
 import logoImage from "@/assets/SPACE.png";
 
 const Footer = () => {
@@ -9,6 +8,8 @@ const Footer = () => {
           <div className="mb-8 flex justify-center">
             <img src={logoImage} alt="SomaSpace" className="h-10" />
           </div>
+          {/* Redes sociales ocultadas temporalmente */}
+          {/* 
           <div className="flex justify-center space-x-6">
             <a href="#" className="text-gray-400 hover:text-primary transition-colors">
               <span className="sr-only">LinkedIn</span>
@@ -23,6 +24,7 @@ const Footer = () => {
               <Instagram className="h-6 w-6" />
             </a>
           </div>
+          */}
         </div>
       </div>
     </footer>
