@@ -39,14 +39,17 @@ app.use((req, res, next) => {
 // Función principal para correr el servidor
 async function startServer() {
   try {
+    // Registrar rutas (ej. /api/appointments)
     await registerRoutes(app);
 
+    // Middleware de manejo de errores
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
       const status = err.status || err.statusCode || 500;
       const message = err.message || "Internal Server Error";
       res.status(status).json({ message });
     });
 
+    // Configuración de frontend con Vite
     if (process.env.NODE_ENV === "development") {
       await setupVite(app);
     } else {
