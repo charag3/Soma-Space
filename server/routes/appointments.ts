@@ -191,6 +191,12 @@ function generateICSFile(fullName: string, dateStr: string, timeStr: string, cal
   const startDateFormatted = formatForICS(startDate);
   const endDateFormatted = formatForICS(endDate);
   const now = formatForICS(new Date());
+ 
+  function generateJitsiRoomName(name: string, date: string, time: string): string {
+  const raw = `${name}-${date}-${time}`;
+  return raw.replace(/[^a-zA-Z0-9]/g, '');
+}
+
   
   // Descripción según tipo de llamada
   let description = `Cita con ${fullName}.\n`;
@@ -224,6 +230,11 @@ DESCRIPTION:Recordatorio
 END:VALARM
 END:VEVENT
 END:VCALENDAR`;
+}
+
+function generateJitsiRoomName(name: string, date: string, time: string): string {
+  const raw = `somaspace-${name}-${date}-${time}`;
+  return raw.replace(/[^a-zA-Z0-9]/g, '');
 }
 
 export const handleAppointment = async (req: Request, res: Response) => {
@@ -262,10 +273,11 @@ export const handleAppointment = async (req: Request, res: Response) => {
     // Crear la tabla si no existe
   // Generar jitsi_url corregido si es videollamada
 let fixedJitsiUrl = jitsi_url;
-if (call_type === 'videollamada' && date && time) {
-  const safeTime = time.replace(':', ''); // 09:00 → 0900
-  fixedJitsiUrl = `https://meet.jit.si/somaspace-${date}-${safeTime}`;
+if (call_type === 'videollamada' && fullName && date && time) {
+  const roomName = generateJitsiRoomName(fullName, date, time);
+  fixedJitsiUrl = `https://meet.jit.si/${roomName}`;
 }
+
 
 // Insertar la cita
 const insertResult = await pool.query(
