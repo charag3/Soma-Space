@@ -260,44 +260,38 @@ export const handleAppointment = async (req: Request, res: Response) => {
     }
 
     // Crear la tabla si no existe
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS appointments (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-        full_name TEXT NOT NULL,
-        email TEXT NOT NULL,
-        appointment_date DATE NOT NULL,
-        appointment_time TEXT NOT NULL,
-        call_type TEXT NOT NULL,
-        phone TEXT,
-        jitsi_url TEXT,
-        message TEXT,
-        created_at TIMESTAMP DEFAULT now()
-      )
-    `);
-    console.log('✅ Tabla de citas verificada/creada');
-    
-    // Insertar la cita
-    const insertResult = await pool.query(
-      `INSERT INTO appointments (
-        full_name, email, appointment_date, appointment_time, 
-        call_type, phone, jitsi_url, message
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-      [fullName, email, date, time, call_type, phone || null, jitsi_url || null, message]
-    );
+  // Generar jitsi_url corregido si es videollamada
+let fixedJitsiUrl = jitsi_url;
+if (call_type === 'videollamada' && date && time) {
+  const safeTime = time.replace(':', ''); // 09:00 → 0900
+  fixedJitsiUrl = `https://meet.jit.si/somaspace-${date}-${safeTime}`;
+}
+
+// Insertar la cita
+const insertResult = await pool.query(
+  `INSERT INTO appointments (
+    full_name, email, appointment_date, appointment_time, 
+    call_type, phone, jitsi_url, message
+  ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
+  [fullName, email, date, time, call_type, phone || null, fixedJitsiUrl || null, message]
+);
+
     
     const appointmentId = insertResult.rows[0].id;
     console.log(`✅ Cita creada con ID: ${appointmentId}`);
 
     // Convertir la fecha y hora de string a objeto Date
-    const [year, month, day] = date.split('-').map(num => parseInt(num, 10));
-    const [hours, minutes] = time.split(':').map(num => parseInt(num, 10));
+    const [year, month, day] = date.split('-').map((num: string) => parseInt(num, 10));
+const [hours, minutes] = time.split(':').map((num: string) => parseInt(num, 10));
+
     
     const appointmentDate = new Date(year, month - 1, day, hours, minutes, 0);
     const endTime = new Date(appointmentDate);
     endTime.setHours(endTime.getHours() + 1); // La cita dura 1 hora
     
     // Generar archivo ICS para el calendario
-    const icsContent = generateICSFile(fullName, date, time, call_type, phone, jitsi_url);
+    const icsContent = generateICSFile(fullName, date, time, call_type, phone, fixedJitsiUrl);
+
 
     // Enviar correo electrónico de confirmación
     if (transporter) {
@@ -314,9 +308,9 @@ export const handleAppointment = async (req: Request, res: Response) => {
 
         if (call_type === 'telefono') {
           emailBody += `<p><strong>Teléfono:</strong> ${phone}</p>`;
-        } else if (call_type === 'videollamada' && jitsi_url) {
+        } else if (call_type === 'videollamada' && fixedJitsiUrl) {
           emailBody += `
-            <p><strong>Enlace de videollamada:</strong> <a href="${jitsi_url}">${jitsi_url}</a></p>
+            <p><strong>Enlace de videollamada:</strong> <a href="${fixedJitsiUrl}">${fixedJitsiUrl}</a></p>
             <p>Haz clic en el enlace a la hora programada para unirte a la videollamada.</p>
           `;
         }
@@ -428,7 +422,7 @@ export const handleAppointment = async (req: Request, res: Response) => {
       }
       
       if (call_type === 'videollamada' && jitsi_url) {
-        telegramMessage += `<b>Enlace:</b> ${jitsi_url}\n`;
+        telegramMessage += `<b>Enlace:</b> ${fixedJitsiUrl}\n`;
       }
       
       if (message) {
