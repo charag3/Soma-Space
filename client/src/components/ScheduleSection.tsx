@@ -8,7 +8,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
 
 // Tipo para la modalidad de llamada
 type CallType = 'telefono' | 'videollamada';
@@ -38,8 +37,7 @@ interface FormErrors {
 
 const ScheduleSection = () => {
   const formRef = useRef<HTMLDivElement>(null);
-  
-  // Estado para manejar datos del formulario
+
   const [formData, setFormData] = useState<ScheduleFormData>({
     fullName: "",
     email: "",
@@ -50,25 +48,33 @@ const ScheduleSection = () => {
     phone: "",
     jitsi_url: ""
   });
-  
-  // Función para manejar el cambio de fecha
-  const handleDateChange = (date: Date | undefined) => {
-    setFormData(prev => {
-      const updatedForm = {
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useScrollAnimation(formRef);
+
+  useEffect(() => {
+    if (
+      formData.call_type === 'videollamada' &&
+      formData.date &&
+      formData.time
+    ) {
+      const dateStr = format(formData.date, 'yyyy-MM-dd');
+      setFormData((prev) => ({
         ...prev,
-        date
-      };
-      
-      // Actualizar URL de Jitsi si es videollamada y ya tenemos fecha y hora
-      if (prev.call_type === 'videollamada' && date && prev.time) {
-        const dateStr = format(date, 'yyyy-MM-dd');
-        updatedForm.jitsi_url = `https://meet.jit.si/somaspace-${dateStr}-${prev.time}`;
-      }
-      
-      return updatedForm;
-    });
-    
-    // Limpiar error específico de la fecha
+        jitsi_url: `https://meet.jit.si/somaspace-${dateStr}-${prev.time}`,
+      }));
+    }
+  }, [formData.call_type, formData.date, formData.time]);
+
+  const handleDateChange = (date: Date | undefined) => {
+    setFormData(prev => ({
+      ...prev,
+      date,
+    }));
+
     if (errors.date) {
       setErrors(prev => ({
         ...prev,
@@ -76,30 +82,14 @@ const ScheduleSection = () => {
       }));
     }
   };
-  
 
-  
-  // Estado para manejar errores de validación
-  const [errors, setErrors] = useState<FormErrors>({});
-  
-  // Estado para manejar envío de formulario
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  // Estado para mostrar mensaje de éxito
-  const [isSuccess, setIsSuccess] = useState(false);
-  
-  // Animación de scroll
-  useScrollAnimation(formRef);
-  
-  // Manejar cambios en los campos
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-    
-    // Limpiar error específico cuando el usuario escribe
+
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
@@ -107,24 +97,15 @@ const ScheduleSection = () => {
       }));
     }
   };
-  
-  // Manejar el cambio de tipo de llamada
+
   const handleCallTypeChange = (value: string) => {
     const callType = value as CallType;
-    
-    // Actualizar los datos del formulario
-    setFormData(prev => {
-      // Si es videollamada, generar URL de Jitsi
-      if (callType === 'videollamada' && prev.date) {
-        const dateStr = format(prev.date, 'yyyy-MM-dd');
-        const jitsiUrl = `https://meet.jit.si/somaspace-${dateStr}-${prev.time}`;
-        return { ...prev, call_type: callType, jitsi_url: jitsiUrl, phone: '' };
-      } else {
-        return { ...prev, call_type: callType, jitsi_url: '' };
-      }
-    });
-    
-    // Limpiar el error de tipo de llamada
+    setFormData(prev => ({
+      ...prev,
+      call_type: callType,
+      phone: callType === 'telefono' ? prev.phone : '',
+    }));
+
     if (errors.call_type) {
       setErrors(prev => ({
         ...prev,
@@ -132,53 +113,38 @@ const ScheduleSection = () => {
       }));
     }
   };
-  
-  // Validar el formulario
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
-    // Validar nombre
+
     if (!formData.fullName.trim()) {
       newErrors.fullName = "El nombre es requerido";
     }
-    
-    // Validar email con expresión regular
     if (!formData.email.trim()) {
       newErrors.email = "El correo electrónico es requerido";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Ingresa un correo electrónico válido";
     }
-    
-    // Validar fecha
     if (!formData.date) {
       newErrors.date = "La fecha es requerida";
     }
-    
-    // Validar hora
     if (!formData.time) {
       newErrors.time = "La hora es requerida";
     }
-    
-    // Validar mensaje
     if (!formData.message.trim()) {
       newErrors.message = "El mensaje es requerido";
     }
-    
-    // Validar tipo de llamada
     if (!formData.call_type) {
       newErrors.call_type = "Selecciona un tipo de llamada";
     }
-    
-    // Validar teléfono si es llamada telefónica
     if (formData.call_type === 'telefono' && (!formData.phone || !formData.phone.trim())) {
       newErrors.phone = "El número de teléfono es requerido para llamadas telefónicas";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
-  // Función para reiniciar el formulario
+
   const resetForm = () => {
     setIsSuccess(false);
     setFormData({
@@ -192,32 +158,21 @@ const ScheduleSection = () => {
       jitsi_url: ""
     });
   };
-  
-  // Manejar envío del formulario
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-    
+    if (!validateForm()) return;
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch('/api/appointments', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Error al agendar la cita');
-      }
-      
+      if (!response.ok) throw new Error(data.error || 'Error al agendar la cita');
       setIsSuccess(true);
     } catch (error) {
       console.error("Error al agendar la cita:", error);
