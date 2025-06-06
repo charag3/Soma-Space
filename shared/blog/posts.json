@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "bienvenido-al-blog",
+    "title": "Bienvenido al Blog de Soma",
+    "description": "Descubre las novedades y actualizaciones de nuestro equipo.",
+    "tags": ["bienvenida", "novedades"],
+    "author": "Equipo Soma",
+    "created_at": "2024-05-01",
+    "content": "<p>Bienvenido al blog. Aqu&iacute; encontrar&aacute;s noticias y art&iacute;culos.</p>"
+  },
+  {
+    "slug": "primer-proyecto",
+    "title": "Nuestro Primer Proyecto",
+    "description": "Compartimos los detalles de c&oacute;mo iniciamos nuestro primer proyecto.",
+    "tags": ["proyecto", "historia"],
+    "author": "Soma Studio",
+    "created_at": "2024-06-15",
+    "content": "<p>En este art&iacute;culo contamos la historia de nuestro primer proyecto.</p>"
+  }
+]
