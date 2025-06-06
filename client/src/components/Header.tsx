@@ -42,6 +42,16 @@ const Header = () => {
         { name: 'Contacto', path: '#contact' }
       ]);
     }
+    // Página de Blog
+    else if (location.pathname.startsWith('/blog')) {
+      setNavItems([
+        { name: 'Inicio', path: '/' },
+        { name: 'Flow', path: '/flow' },
+        { name: 'Studio', path: '/studio' },
+        { name: 'Portafolio', path: '/portfolio' },
+        { name: 'Contacto', path: '/contact' }
+      ]);
+    }
     // Página de Portafolio
     else if (location.pathname === '/portfolio') {
       setNavItems([

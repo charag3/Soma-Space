@@ -10,6 +10,8 @@ import FlowHome from "@/pages/FlowHome";
 import StudioHome from "@/pages/StudioHome";
 import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
+import BlogHome from "@/pages/blog/BlogHome";
+import BlogPost from "@/pages/blog/[slug]";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
               <Route path="/flow" element={<FlowHome />} />
               <Route path="/studio" element={<StudioHome />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/blog" element={<BlogHome />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
