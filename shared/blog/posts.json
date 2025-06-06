@@ -6,15 +6,24 @@
     "tags": ["bienvenida", "novedades"],
     "author": "Equipo Soma",
     "created_at": "2024-05-01",
-    "content": "<p>Bienvenido al blog. Aqu&iacute; encontrar&aacute;s noticias y art&iacute;culos.</p>"
+    "content": "<p>Automatizar no se trata solo de ahorrar tiempo. Se trata de recuperar presencia. En vez de apagar fuegos todo el día, puedes construir un sistema que actúe por ti mientras te enfocas en lo que realmente importa: pensar, crear, estar.</p><p>En SomaFlow lo vemos todos los días: negocios pequeños que pasan de estar desbordados a tener claridad con solo ordenar sus procesos y quitarle tareas a las personas que no deberían estar haciéndolas. Automatizar es, en muchos casos, una forma de sanar.</p><p>¿Qué tipo de cosas se pueden automatizar? Reservas, correos, reportes, cobros, procesos internos, flujos de aprobación, marketing, entregas de productos digitales, bots de WhatsApp, seguimiento de clientes… Y mucho más.</p><p>Este blog será una guía para que puedas hacerlo tú también. Compartiremos proyectos reales, flujos que hemos implementado, herramientas que usamos y caminos para que tú también lo pongas en práctica. Todo lo que estamos aprendiendo en el camino, lo queremos compartir aquí.</p>"
   },
   {
     "slug": "primer-proyecto",
     "title": "Nuestro Primer Proyecto",
-    "description": "Compartimos los detalles de c&oacute;mo iniciamos nuestro primer proyecto.",
+    "description": "Compartimos los detalles de cómo iniciamos nuestro primer proyecto.",
     "tags": ["proyecto", "historia"],
     "author": "Soma Studio",
     "created_at": "2024-06-15",
-    "content": "<p>En este art&iacute;culo contamos la historia de nuestro primer proyecto.</p>"
+    "content": "<p>Todo empezó con un problema simple: un cliente que no podía organizar sus sesiones con pacientes porque su agenda vivía en WhatsApp. Juntos desarrollamos un sistema básico para tomar citas en línea, enviar recordatorios y automatizar los reportes semanales.</p><p>No fue perfecto al principio. Pero nos dimos cuenta de que muchos negocios tienen este mismo problema: están tan ocupados operando que no tienen espacio para mejorar cómo operan. Ahí es donde entra SomaFlow.</p><p>Ese primer proyecto nos enseñó a construir con lo que hay, iterar con rapidez, y enfocarnos en que el sistema sea útil desde el día uno. No necesitas esperar a tener todo listo. Empieza, prueba, y mejora.</p><p>Hoy ese cliente tiene un sistema que creció con él, y sigue funcionando sin fricciones. Eso es lo que queremos replicar con cada cliente que se acerca a nosotros.</p>"
+  },
+  {
+    "slug": "automatizacion-para-humanos",
+    "title": "Automatización para Humanos",
+    "description": "Un manifiesto sobre cómo entendemos los sistemas en SomaFlow.",
+    "tags": ["filosofía", "automatización", "humanidad"],
+    "author": "Carlos de Soma",
+    "created_at": "2024-07-01",
+    "content": "<p>La palabra sistema suele hacernos pensar en algo rígido, mecánico o ajeno. Pero los sistemas también pueden ser suaves, humanos, intuitivos. Pueden ayudarte a fluir con más ligereza, no a llenarte de más cosas por hacer.</p><p>Automatizar no debería deshumanizar tu trabajo. Al contrario, debería liberarte para que puedas enfocarte en lo que sí requiere tu atención plena. Es una herramienta al servicio de tu creatividad, no un reemplazo de tu presencia.</p><p>En SomaFlow diseñamos cada solución con eso en mente: que la tecnología esté al fondo, sosteniendo, sin estorbar. Que puedas confiar en que algo funciona sin tener que pensarlo todos los días.</p><p>Este enfoque nos ha permitido acompañar a terapeutas, artistas, creadores y emprendedores en su camino hacia una operación más armónica, sin perder el alma del negocio. Automatización para humanos. Así es como lo vemos.</p>"
   }
 ]

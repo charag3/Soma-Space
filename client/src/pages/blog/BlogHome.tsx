@@ -3,21 +3,22 @@ import posts from "@shared/blog/posts.json";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import ParticlesBackgorund from "@/components/ParticlesBackground"; // Asegúrate de que exista este componente
+import ParticlesBackground from "@/components/ParticlesBackground";
 
 type Post = typeof posts[number];
 
 const BlogHome = () => {
   usePageMeta({
     title: "Blog | SomaSpace",
-    description: "Recursos y guías sobre automatización, sistemas y flujos de trabajo."
+    description: "Recursos y guías sobre automatización, sistemas y flujos de trabajo.",
   });
 
   return (
-    <div className="relative min-h-screen text-white bg-dark-900">
-      <ParticlesBackgorund className="fixed inset-0 -z-10 pointer-events-none" />
+    <div className="relative flex flex-col min-h-screen bg-dark-900 text-white">
+      <ParticlesBackground className="fixed inset-0 -z-10 pointer-events-none" />
       <Header />
-      <main className="container mx-auto px-6 py-12">
+
+      <main className="flex-grow container mx-auto px-6 pt-20 pb-24">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl font-bold mb-4 font-space">Blog</h1>
           <p className="text-lg text-gray-300">
@@ -46,6 +47,7 @@ const BlogHome = () => {
           ))}
         </div>
       </main>
+
       <Footer />
     </div>
   );

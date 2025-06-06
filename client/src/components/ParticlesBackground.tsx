@@ -3,7 +3,7 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
 import type { HTMLAttributes } from "react";
-import { cn } from "@/lib/utils"; // usa tu función para combinar clases
+import { cn } from "@/lib/utils";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
@@ -14,7 +14,7 @@ const ParticlesBackground = ({ className, ...rest }: Props) => {
 
   return (
     <div
-      className={cn("absolute inset-0 z-0", className)}
+      className={cn("fixed inset-0 -z-10 pointer-events-none", className)}
       {...rest}
     >
       <Particles
@@ -34,15 +34,10 @@ const ParticlesBackground = ({ className, ...rest }: Props) => {
                 value_area: 800,
               },
             },
-            color: {
-              value: "#2EE9DC",
-            },
+            color: { value: "#2EE9DC" },
             shape: {
               type: "circle",
-              stroke: {
-                width: 0,
-                color: "#000000",
-              },
+              stroke: { width: 0, color: "#000000" },
             },
             opacity: {
               value: 0.5,
@@ -89,26 +84,16 @@ const ParticlesBackground = ({ className, ...rest }: Props) => {
           interactivity: {
             detect_on: "canvas",
             events: {
-              onhover: {
-                enable: true,
-                mode: "grab",
-              },
-              onclick: {
-                enable: true,
-                mode: "push",
-              },
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" },
               resize: true,
             },
             modes: {
               grab: {
                 distance: 180,
-                line_linked: {
-                  opacity: 0.8,
-                },
+                line_linked: { opacity: 0.8 },
               },
-              push: {
-                particles_nb: 4,
-              },
+              push: { particles_nb: 4 },
             },
           },
           detectRetina: true,
