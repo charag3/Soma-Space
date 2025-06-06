@@ -2,49 +2,53 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./client/index.html",
+    "./client/src/**/*.{js,jsx,ts,tsx}",
+    "./index.html" //  ←  opcional, si existe un index.html en la raíz
+  ],
   theme: {
     extend: {
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 4px)"
       },
       colors: {
         dark: {
           700: "#1A1D28",
           800: "#141620",
-          900: "#0F1116",
+          900: "#0F1116"
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          foreground: "hsl(var(--card-foreground))"
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          foreground: "hsl(var(--popover-foreground))"
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          foreground: "hsl(var(--primary-foreground))"
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          foreground: "hsl(var(--secondary-foreground))"
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          foreground: "hsl(var(--muted-foreground))"
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          foreground: "hsl(var(--accent-foreground))"
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          foreground: "hsl(var(--destructive-foreground))"
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -54,7 +58,7 @@ export default {
           "2": "hsl(var(--chart-2))",
           "3": "hsl(var(--chart-3))",
           "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
+          "5": "hsl(var(--chart-5))"
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -64,33 +68,40 @@ export default {
           accent: "hsl(var(--sidebar-accent))",
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
+          ring: "hsl(var(--sidebar-ring))"
+        }
       },
       fontFamily: {
         space: ['"Space Grotesk"', "sans-serif"],
-        script: ['"Satisfy"', "cursive"],
+        script: ['"Satisfy"', "cursive"]
       },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "var(--radix-accordion-content-height)" }
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          to: { height: "0" }
         },
         fadeIn: {
           from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
+          to: { opacity: "1" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fadeIn 0.8s ease-out",
+        "fade-in": "fadeIn 0.8s ease-out"
       },
-    },
+      zIndex: {
+        "-20": "-20" // por si necesitas usar -z-20
+      }
+    }
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
+    require("tailwindcss-animate")
+  ]
 } satisfies Config;
