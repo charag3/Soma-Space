@@ -5,7 +5,7 @@ export default {
   content: [
     "./client/index.html",
     "./client/src/**/*.{js,jsx,ts,tsx}",
-    "./index.html" //  ←  opcional, si existe un index.html en la raíz
+    "./index.html" //  ← opcional, solo si existe en la raíz
   ],
   theme: {
     extend: {
@@ -78,24 +78,24 @@ export default {
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" }
+          to:   { height: "var(--radix-accordion-content-height)" }
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" }
+          to:   { height: "0" }
         },
         fadeIn: {
           from: { opacity: "0" },
-          to: { opacity: "1" }
+          to:   { opacity: "1" }
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fadeIn 0.8s ease-out"
+        "accordion-up":   "accordion-up 0.2s ease-out",
+        "fade-in":        "fadeIn 0.8s ease-out"
       },
       zIndex: {
-        "-20": "-20" // por si necesitas usar -z-20
+        "-20": "-20" // útil para fondos por debajo de -z-10
       }
     }
   },
