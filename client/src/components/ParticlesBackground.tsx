@@ -14,7 +14,10 @@ const ParticlesBackground = ({ className, ...rest }: Props) => {
 
   return (
     <div
-      className={cn("fixed inset-0 -z-10 pointer-events-none", className)}
+      className={cn(
+        "fixed inset-0 w-screen h-screen -z-10 pointer-events-none",
+        className
+      )}
       {...rest}
     >
       <Particles

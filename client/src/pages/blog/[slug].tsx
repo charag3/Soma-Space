@@ -16,25 +16,44 @@ const BlogPost = () => {
   usePageMeta({ title: `${post.title} | SomaSpace`, description: post.description });
 
   const related = posts
-    .filter(p => p.slug !== post.slug)
-    .sort(() => 0.5 - Math.random()) // mezcla aleatoria
+    .filter((p) => p.slug !== post.slug)
+    .sort(() => 0.5 - Math.random())
     .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Header />
-      <main className="px-6 lg:px-60 py-20">
-        <article className="prose prose-lg prose-gray max-w-none">
-          <h1 className="font-space">{post.title}</h1>
-          <p className="text-sm text-gray-500 mb-8">
-            {new Date(post.created_at).toLocaleDateString()} — {post.author}
+
+      {/* Hero / Encabezado */}
+      <section className="w-full border-b border-gray-200 pt-20 pb-12 px-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-sm text-gray-500">
+            {new Date(post.created_at).toLocaleDateString("es-MX", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}{" "}
+            — {post.author}
           </p>
+          <h1 className="text-4xl font-bold font-space mt-4">{post.title}</h1>
+          {post.description && (
+            <p className="mt-4 text-lg text-gray-600">{post.description}</p>
+          )}
+        </div>
+      </section>
+
+      {/* Contenido principal */}
+      <main className="px-6 pt-12 pb-20">
+        <article className="prose prose-gray max-w-2xl mx-auto prose-lg">
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
 
+        {/* Artículos relacionados */}
         {related.length > 0 && (
-          <section className="mt-20 border-t pt-10">
-            <h2 className="text-2xl font-bold mb-6 font-space">Sigue leyendo</h2>
+          <section className="mt-24 border-t pt-10 max-w-5xl mx-auto px-2">
+            <h2 className="text-2xl font-bold mb-6 font-space text-gray-800 text-center">
+              Sigue leyendo
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((r) => (
                 <Link
@@ -53,6 +72,7 @@ const BlogPost = () => {
           </section>
         )}
       </main>
+
       <Footer />
     </div>
   );
