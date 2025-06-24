@@ -12,6 +12,7 @@ import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
 import BlogHome from "@/pages/blog/BlogHome";
 import BlogPost from "@/pages/blog/[slug]";
+import SomaExpressLanding from "./pages/express";
 
 function App() {
   return (
