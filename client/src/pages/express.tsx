@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Zap, Smartphone, CheckCircle, Star, Code, Palette, BarChart3, ArrowRight, Calendar, User, Briefcase, Globe } from 'lucide-react';
+import { Clock, Zap, Smartphone, CheckCircle, Star, Code, Palette, BarChart3, ArrowRight, Calendar, User, Briefcase, Globe, Mail, MessageSquare } from 'lucide-react';
 
 // Componente ScheduleSection
 const ScheduleSection = () => {
@@ -31,6 +31,17 @@ const ScheduleSection = () => {
 
 const SomaExpressLanding = () => {
   const [selectedPlan, setSelectedPlan] = useState('Pro');
+  // State for the new contact form
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log({ contactName, contactEmail, contactMessage });
+    alert('Thank you for your message!');
+  };
 
   const plans = [
     {
@@ -354,6 +365,74 @@ const SomaExpressLanding = () => {
                 If you don't absolutely love what we build, you don't pay.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Contact Form Section */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-gray-900">Have Questions? Get In Touch</h2>
+            <p className="text-xl text-gray-600">
+              Fill out the form below and we'll get back to you as soon as possible.
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <form onSubmit={handleContactSubmit} className="space-y-6 bg-white p-8 rounded-xl border border-gray-200 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <div className="relative">
+                    <User className="h-5 w-5 text-gray-400 absolute top-1/2 left-3 transform -translate-y-1/2" />
+                    <input 
+                      type="text" 
+                      id="name"
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                  <div className="relative">
+                    <Mail className="h-5 w-5 text-gray-400 absolute top-1/2 left-3 transform -translate-y-1/2" />
+                    <input 
+                      type="email" 
+                      id="email"
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                <div className="relative">
+                  <MessageSquare className="h-5 w-5 text-gray-400 absolute top-4 left-3" />
+                  <textarea 
+                    id="message"
+                    rows={6}
+                    value={contactMessage}
+                    onChange={(e) => setContactMessage(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
+                    placeholder="Tell us about your project or ask a question..."
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <div className="text-center">
+                <button type="submit" className="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all transform hover:scale-105 shadow-lg shadow-emerald-600/25">
+                  Send Message
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
