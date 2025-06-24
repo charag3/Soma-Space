@@ -29,6 +29,7 @@ function App() {
               <Route path="/blog" element={<BlogHome />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/express" element={<SomaExpressLanding />} /> {/* ← Agrega esta línea */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BackgroundProvider>
